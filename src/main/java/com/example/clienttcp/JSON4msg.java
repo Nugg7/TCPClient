@@ -9,19 +9,18 @@ import java.io.IOException;
 import java.util.UUID;
 
 import java.io.FileWriter;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
 import org.json.simple.parser.JSONParser;
 
 
-public class JSONManager {
+public class JSON4msg {
     static JSONObject doc;
     JSONParser jsonParser = new JSONParser();
 
     private String username;
     private UUID uuid;
 
-    public JSONManager(){
+    public JSON4msg(){
         try (FileReader reader = new FileReader("src/Message.json"))
         {
             //Read JSON file
