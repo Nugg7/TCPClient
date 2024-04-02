@@ -8,14 +8,14 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
-   <Text fx:id="SignInLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter username to join the auction!">
-      <font>
-         <Font size="17.0" />
-      </font>
-   </Text>
-   <TextField fx:id="UserName" maxWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
-  <Button fx:id="SignInButton" onAction="#submit" text="Sing-in" />
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Text fx:id="SignInLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter username to join the auction!">
+        <font>
+            <Font size="17.0" />
+        </font>
+    </Text>
+    <TextField fx:id="UserName" maxWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
+    <Button fx:id="SignInButton" onAction="#submit" text="Sing-in" />
 </VBox>

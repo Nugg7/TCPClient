@@ -16,114 +16,114 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <BorderPane prefHeight="495.0" prefWidth="701.0">
-      <center>
-         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-               <SplitPane layoutX="2.0" layoutY="2.0" prefHeight="330.0" prefWidth="432.0">
-                  <items>
-                     <SplitPane dividerPositions="0.10670731707317073" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-                       <items>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                              <children>
-                                 <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat Room">
-                                    <font>
-                                       <Font size="25.0" />
-                                    </font>
-                                 </Text>
-                              </children>
-                           </AnchorPane>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                              <children>
-                                 <ScrollPane prefHeight="290.0" prefWidth="432.0">
-                                    <content>
-                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="419.0">
-                                          <children>
-                                             <VBox fx:id="chatPane" prefHeight="285.0" prefWidth="418.0" />
-                                          </children>
-                                       </AnchorPane>
-                                    </content>
-                                 </ScrollPane>
-                              </children>
-                           </AnchorPane>
-                       </items>
-                     </SplitPane>
-                  </items>
-               </SplitPane>
-               <SplitPane layoutX="434.0" layoutY="2.0" prefHeight="330.0" prefWidth="267.0">
-                  <items>
-                     <SplitPane dividerPositions="0.10670731707317073" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-                       <items>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                              <children>
-                                 <Text fx:id="productTitlePane" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product:">
-                                    <font>
-                                       <Font size="25.0" />
-                                    </font>
-                                 </Text>
-                              </children>
-                           </AnchorPane>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                              <children>
-                                 <ScrollPane prefHeight="292.0" prefWidth="264.0">
-                                   <content>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="251.0">
-                                          <children>
-                                             <VBox fx:id="bidPane" prefHeight="285.0" prefWidth="252.0" />
-                                          </children>
-                                       </AnchorPane>
-                                   </content>
-                                 </ScrollPane>
-                              </children>
-                           </AnchorPane>
-                       </items>
-                     </SplitPane>
-                  </items>
-               </SplitPane>
-            </children>
-         </Pane>
-      </center>
-      <top>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Auction" wrappingWidth="204.00299072265625" BorderPane.alignment="CENTER">
-            <font>
-               <Font size="57.0" />
-            </font>
-         </Text>
-      </top>
-      <bottom>
-         <SplitPane dividerPositions="0.4978540772532189" prefHeight="34.0" prefWidth="701.0" BorderPane.alignment="CENTER">
-           <items>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                  <children>
-                     <SplitPane prefHeight="32.0" prefWidth="242.0">
+    <BorderPane prefHeight="495.0" prefWidth="701.0">
+        <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <children>
+                    <SplitPane layoutX="2.0" layoutY="2.0" prefHeight="330.0" prefWidth="432.0">
                         <items>
-                           <TextField fx:id="chatTextField" prefHeight="26.0" prefWidth="227.0" text="Enter something" />
+                            <SplitPane dividerPositions="0.10670731707317073" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                                <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                        <children>
+                                            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat Room">
+                                                <font>
+                                                    <Font size="25.0" />
+                                                </font>
+                                            </Text>
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                        <children>
+                                            <ScrollPane prefHeight="290.0" prefWidth="432.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="419.0">
+                                                        <children>
+                                                            <VBox fx:id="chatPane" prefHeight="285.0" prefWidth="418.0" />
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                        </children>
+                                    </AnchorPane>
+                                </items>
+                            </SplitPane>
                         </items>
-                     </SplitPane>
-                     <SplitPane layoutX="243.0" layoutY="-1.0" prefHeight="34.0" prefWidth="102.0">
+                    </SplitPane>
+                    <SplitPane layoutX="434.0" layoutY="2.0" prefHeight="330.0" prefWidth="267.0">
                         <items>
-                           <Button fx:id="sendMessageButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="101.0" text="Send" />
+                            <SplitPane dividerPositions="0.10670731707317073" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                                <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                        <children>
+                                            <Text fx:id="productTitlePane" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product:">
+                                                <font>
+                                                    <Font size="25.0" />
+                                                </font>
+                                            </Text>
+                                        </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                        <children>
+                                            <ScrollPane prefHeight="292.0" prefWidth="264.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="251.0">
+                                                        <children>
+                                                            <VBox fx:id="bidPane" prefHeight="285.0" prefWidth="252.0" />
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                        </children>
+                                    </AnchorPane>
+                                </items>
+                            </SplitPane>
                         </items>
-                     </SplitPane>
-                  </children>
-               </AnchorPane>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="32.0" prefWidth="178.0">
-                  <children>
-                     <SplitPane prefHeight="33.0" prefWidth="174.0">
-                        <items>
-                           <TextField fx:id="bidTextField" prefHeight="26.0" prefWidth="231.0" text="Enter bid" />
-                        </items>
-                     </SplitPane>
-                     <SplitPane dividerPositions="0.5" layoutX="174.0" layoutY="-2.0" prefHeight="34.0" prefWidth="174.0">
-                        <items>
-                           <Button fx:id="bidButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" text="BID" />
-                           <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="184.0" text="QUIT" />
-                        </items>
-                     </SplitPane>
-                  </children>
-               </AnchorPane>
-           </items>
-         </SplitPane>
-      </bottom>
-   </BorderPane>
+                    </SplitPane>
+                </children>
+            </Pane>
+        </center>
+        <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Auction" wrappingWidth="204.00299072265625" BorderPane.alignment="CENTER">
+                <font>
+                    <Font size="57.0" />
+                </font>
+            </Text>
+        </top>
+        <bottom>
+            <SplitPane dividerPositions="0.4978540772532189" prefHeight="34.0" prefWidth="701.0" BorderPane.alignment="CENTER">
+                <items>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <children>
+                            <SplitPane prefHeight="32.0" prefWidth="242.0">
+                                <items>
+                                    <TextField fx:id="chatTextField" prefHeight="26.0" prefWidth="227.0" text="Enter something" />
+                                </items>
+                            </SplitPane>
+                            <SplitPane layoutX="243.0" layoutY="-1.0" prefHeight="34.0" prefWidth="102.0">
+                                <items>
+                                    <Button fx:id="sendMessageButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="30.0" prefWidth="101.0" text="Send" />
+                                </items>
+                            </SplitPane>
+                        </children>
+                    </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="32.0" prefWidth="178.0">
+                        <children>
+                            <SplitPane prefHeight="33.0" prefWidth="174.0">
+                                <items>
+                                    <TextField fx:id="bidTextField" prefHeight="26.0" prefWidth="231.0" text="Enter bid" />
+                                </items>
+                            </SplitPane>
+                            <SplitPane dividerPositions="0.5" layoutX="174.0" layoutY="-2.0" prefHeight="34.0" prefWidth="174.0">
+                                <items>
+                                    <Button fx:id="bidButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" text="BID" />
+                                    <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="184.0" text="QUIT" />
+                                </items>
+                            </SplitPane>
+                        </children>
+                    </AnchorPane>
+                </items>
+            </SplitPane>
+        </bottom>
+    </BorderPane>
 </VBox>

@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -17,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,19 +27,19 @@ public class ClientController{
     @FXML
     private TextField UserName;
     @FXML
-    private Button SignInButton;
+    private TextField chatTextField;
     @FXML
     private Text SignInLabel;
 
-    private Client client;
+    static private Client client;
 
     private Timer timer;
     private TimerTask task;
     String user;
+    JSON4msg msg = new JSON4msg();
     //submit action for sign in
     public void submit(ActionEvent event) {
         //connects to server and sends the profile to be saved in the server
-        JSON4msg msg = new JSON4msg();
         user = UserName.getText(); //gets the username from the text field in the scene
         if (user != null && !(user.equals("admin"))) {
             try {
@@ -63,7 +66,7 @@ public class ClientController{
 
     public void userConnection(ActionEvent event, JSON4msg msg) throws IOException{
         try{
-            Socket socket = new Socket("localhost", 1234); //generates socket (ip address, port)
+            Socket socket = new Socket("localhost", 25565); //generates socket (ip address, port)
             client = new Client(socket, user); //connects to the server through the socket
             msg.setProfile(user, client.getUuid()); //sets the user and the UUID in the json file
             client.sendMessage(msg.getProfile().toString()); //sends profile to server (username and UUID)
@@ -95,6 +98,17 @@ public class ClientController{
             System.out.println("Failed to connect to server");
             SignInLabel.setStyle("-fx-fill: red;");
             SignInLabel.setText("Connection Failed");
+        }
+        client.listenForMessages();
+    }
+
+    public void sendChatMessage(ActionEvent event) {
+        String message = chatTextField.getText();
+        if (message!= null && (!message.equals(""))) {
+            msg.setMessage(message);
+            client.sendMessage(msg.getProfile().toString());
+            msg.resetMessage();
+            chatTextField.setText("");
         }
     }
 }

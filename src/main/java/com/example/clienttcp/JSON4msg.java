@@ -65,4 +65,16 @@ public class JSON4msg {
         String result = "\nUsername: " + username + "\nUUID: " + uuid + "\n";
         return result;
     }
+
+    public void setMessage(String message) {
+        doc.remove("message");
+        doc.put("message", message);
+        write();
+    }
+
+    public void resetMessage() {
+        doc.remove("message");
+        doc.put("message", "");
+        write();
+    }
 }
