@@ -1,5 +1,6 @@
 package com.example.clienttcp;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,5 +45,9 @@ public class ClientController{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void quit(ActionEvent event){
+        Platform.exit();
     }
 }
