@@ -21,7 +21,7 @@ public class JSON4msg {
     private UUID uuid;
 
     public JSON4msg(){
-        try (FileReader reader = new FileReader("src/Message.json"))
+        try (FileReader reader = new FileReader("Message.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
@@ -47,7 +47,7 @@ public class JSON4msg {
     }
 
     private void write(){
-        try (FileWriter file = new FileWriter("src/Message.json")) {
+        try (FileWriter file = new FileWriter("Message.json")) {
             file.write(doc.toJSONString());
             file.flush();
         } catch (IOException e) {
