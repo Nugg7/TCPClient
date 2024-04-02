@@ -44,5 +44,33 @@ public class Client {
         }
     }
 
+    public void listenForMessages(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String message;
+                while (socket.isConnected()) {
+                    try {
+                        message = reader.readLine();
+                        System.out.println(message);
+                    } catch (IOException e) {
+                        System.out.println("Error reading a message at Client class Listen for message method");
+                        closeEverything(socket, reader, writer);
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
 
+    public void closeEverything(Socket clientSocket, BufferedReader breader, BufferedWriter bwriter){
+        try {
+            clientSocket.close();
+            breader.close();
+            bwriter.close();
+        } catch (IOException e) {
+            System.out.println("error at closeEverything method");
+            e.printStackTrace();
+        }
+    }
 }
