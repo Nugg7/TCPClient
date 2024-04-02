@@ -58,4 +58,11 @@ public class JSON4msg {
     public JSONObject getProfile() {
         return doc;
     }
+
+    public String profileToString() {
+        String username = (String) doc.get("username");
+        UUID uuid = UUID.fromString((String)doc.get("UUID"));
+        String result = "\nUsername: " + username + "\nUUID: " + uuid + "\n";
+        return result;
+    }
 }
