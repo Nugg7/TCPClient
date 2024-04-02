@@ -24,7 +24,7 @@ public class ClientController{
     @FXML
     private Button SignInButton;
     String user;
-
+    //submit action for sign in
     public void submit(ActionEvent event) throws IOException {
         //connects to server and sends the profile to be saved in the server
         JSONManager json = new JSONManager();
@@ -42,14 +42,18 @@ public class ClientController{
         System.out.println(json.getProfile()); //debug to see the username and UUID in console
 
         //after sign in changes to auction scene
+        switchToAuctionScene(event);
+    }
+    //onclick event to close the program with quit button in auction scene
+    public void quit(ActionEvent event){
+        Platform.exit();
+    }
+    //switch scene function
+    public void switchToAuctionScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Auction-view.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-    //onclick event to close the program with quit button in auction scene
-    public void quit(ActionEvent event){
-        Platform.exit();
     }
 }
