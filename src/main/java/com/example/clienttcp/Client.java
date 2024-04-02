@@ -25,6 +25,14 @@ public class Client {
         }
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
     public void sendMessage(String message){
         try{
             writer.write(message);
@@ -36,11 +44,5 @@ public class Client {
         }
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
 
-    public String getUsername() {
-        return username;
-    }
 }

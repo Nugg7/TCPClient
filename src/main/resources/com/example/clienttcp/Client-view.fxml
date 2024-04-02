@@ -11,7 +11,7 @@
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enter username to join the auction!">
+   <Text fx:id="SignInLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter username to join the auction!">
       <font>
          <Font size="17.0" />
       </font>
