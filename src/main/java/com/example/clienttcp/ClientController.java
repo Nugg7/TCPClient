@@ -1,13 +1,19 @@
 package com.example.clienttcp;
 
 import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -15,7 +21,10 @@ import java.io.IOException;
 import java.net.Socket;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -30,8 +39,15 @@ public class ClientController{
     private TextField chatTextField;
     @FXML
     private Text SignInLabel;
+    @FXML
+    public VBox chatPane;
+    @FXML
+    private VBox bidPane;
+    @FXML
+    private ScrollPane chatScrollPane;
 
     static private Client client;
+    static public String serverMsg = "";
 
     private Timer timer;
     private TimerTask task;
@@ -62,11 +78,12 @@ public class ClientController{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
 
     public void userConnection(ActionEvent event, JSON4msg msg) throws IOException{
         try{
-            Socket socket = new Socket("localhost", 25565); //generates socket (ip address, port)
+            Socket socket = new Socket("localhost", 1234); //generates socket (ip address, port)
             client = new Client(socket, user); //connects to the server through the socket
             msg.setProfile(user, client.getUuid()); //sets the user and the UUID in the json file
             client.sendMessage(msg.getProfile().toString()); //sends profile to server (username and UUID)
@@ -99,7 +116,6 @@ public class ClientController{
             SignInLabel.setStyle("-fx-fill: red;");
             SignInLabel.setText("Connection Failed");
         }
-        client.listenForMessages();
     }
 
     public void sendChatMessage(ActionEvent event) {
@@ -107,8 +123,46 @@ public class ClientController{
         if (message!= null && (!message.equals(""))) {
             msg.setMessage(message);
             client.sendMessage(msg.getProfile().toString());
+            HBox hbox = createHBox(message);
+            chatPane.getChildren().add(hbox);
             msg.resetMessage();
             chatTextField.setText("");
         }
     }
+
+    public static HBox createHBox(String message){
+        HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.setPadding(new Insets(5,5,5,5));
+
+        Text text = new Text(message);
+        TextFlow textFlow = new TextFlow(text);
+
+        textFlow.setStyle("-fx-background-color: rgb(233,233,235)");
+        textFlow.setPadding(new Insets(5,10,5,10));
+        hbox.getChildren().add(textFlow);
+
+        return hbox;
+    }
+
+    public static void showMessage(String message, int code, VBox vbox){
+        HBox hbox = createHBox(message);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run(){
+                vbox.getChildren().add(hbox);
+            }
+        });
+    }
+
+    /*@Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*chatPane.heightProperty().addListener(new ChangeListener<Number>(){
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
+                chatScrollPane.setVvalue((Double) newValue);
+            }
+        });
+        VBox vbox = chatPane;
+    }*/
 }

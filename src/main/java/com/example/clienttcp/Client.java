@@ -1,5 +1,7 @@
 package com.example.clienttcp;
 
+import javafx.scene.layout.VBox;
+
 import java.io.*;
 import java.net.*;
 import java.util.UUID;
@@ -44,7 +46,7 @@ public class Client {
         }
     }
 
-    public void listenForMessages(){
+    public void listenForMessages(VBox vbox){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -52,7 +54,7 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         message = reader.readLine();
-                        System.out.println(message);
+                        ClientController.showMessage(message, 1, vbox);
                     } catch (IOException e) {
                         System.out.println("Error reading a message at Client class Listen for message method");
                         closeEverything(socket, reader, writer);
