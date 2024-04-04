@@ -65,7 +65,7 @@
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                         <children>
-                                            <ScrollPane prefHeight="292.0" prefWidth="264.0">
+                                            <ScrollPane fx:id="bidScrollpane" prefHeight="292.0" prefWidth="264.0">
                                                 <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="251.0">
                                                         <children>
