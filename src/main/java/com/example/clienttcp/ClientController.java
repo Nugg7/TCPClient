@@ -48,6 +48,8 @@ public class ClientController{
     @FXML
     private VBox bidPane;
     @FXML
+    private Button bidButton;
+    @FXML
     private ScrollPane chatScrollPane;
     @FXML
     private Button conDisButton;
@@ -107,7 +109,7 @@ public class ClientController{
                 System.out.println("connection failure at connect function");
                 throw new RuntimeException(e);
             }
-            client.listenForMessages(chatPane);
+            client.listenForMessages(chatPane, bidPane);
             conDisButton.setText("QUIT");
             isConnected = true;
         }
@@ -151,10 +153,42 @@ public class ClientController{
                 msg.setMessage(message);
                 client.sendMessage(msg.getProfile().toString());
                 msg.resetMessage();
-                chatTextField.setText("");
+                chatTextField.clear();
             }
         } catch (Exception o){
             chatTextField.setText("ERROR: Disconnected from server");
+        }
+    }
+
+    public void sendBid(ActionEvent event) {
+        String message = bidTextField.getText();
+        if (message != null){
+         try{
+             double value = Double.parseDouble(message);
+             msg.setMessage(message);
+             client.sendMessage(msg.getProfile().toString());
+             bidTextField.clear();
+         } catch (Exception e){
+             if (statusText.getText().equals("Status: Disconnected")){
+                 bidTextField.setText("ERROR: Disconnected from server");
+             }
+             else {
+                 bidTextField.setText("ERROR: not a number");
+                 timer = new Timer();
+                 task = new TimerTask() {
+                     @Override
+                     public void run() {
+                         Platform.runLater(new Runnable() {
+                             @Override
+                             public void run() {
+                                 bidTextField.clear();
+                             }
+                         });
+                     }
+                 };
+                 timer.schedule(task, 1000);
+             }
+         }
         }
     }
 
@@ -173,7 +207,7 @@ public class ClientController{
         return hbox;
     }
 
-    public static void showMessage(String message, int code, VBox vbox){
+    public static void showMessage(String message, VBox vbox){
         HBox hbox = createHBox(message);
         Platform.runLater(new Runnable() {
             @Override

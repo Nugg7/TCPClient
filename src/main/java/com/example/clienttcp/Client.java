@@ -50,7 +50,7 @@ public class Client {
         }
     }
 
-    public void listenForMessages(VBox vbox){
+    public void listenForMessages(VBox chatPane, VBox bidPane){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -60,8 +60,17 @@ public class Client {
                         message = reader.readLine();
                         JSONObject JSONMessage = parseMessage(message);
                         int messageCode = codeReader(JSONMessage);
+                        VBox panel = null;
+                        switch (messageCode){
+                            case 1 :
+                                panel = chatPane;
+                            break;
+                            case 3 :
+                                panel = bidPane;
+                            break;
+                        }
                         String parsedMessage = (String)JSONMessage.get("MESSAGE");
-                        ClientController.showMessage(parsedMessage, messageCode, vbox);
+                        ClientController.showMessage(parsedMessage, panel);
                     } catch (IOException e) {
                         System.out.println("Error reading a message at Client class Listen for message method");
                         closeEverything(socket, reader, writer);
@@ -102,6 +111,9 @@ public class Client {
             break;
             case "AUCTION":
                 code = 2;
+            break;
+            case "BID":
+                code = 3;
             break;
             default:
                 code = 1;
