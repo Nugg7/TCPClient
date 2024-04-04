@@ -44,6 +44,8 @@ public class ClientController {
     @FXML
     private ScrollPane chatScrollPane;
     @FXML
+    private ScrollPane bidScrollPane;
+    @FXML
     private Button conDisButton;
     static private Client client;
     public static boolean isConnected = false;
