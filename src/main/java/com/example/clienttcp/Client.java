@@ -1,6 +1,8 @@
 package com.example.clienttcp;
 
 import javafx.scene.layout.VBox;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.*;
@@ -12,6 +14,8 @@ public class Client {
     private BufferedWriter writer;
     private String username;
     private UUID uuid;
+    private int messageCode;
+    private JSON4msg parser = new JSON4msg();
 
     public Client(Socket socket, String username){
         this.username = username;
@@ -54,7 +58,10 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         message = reader.readLine();
-                        ClientController.showMessage(message, 1, vbox);
+                        JSONObject JSONMessage = parseMessage(message);
+                        int messageCode = codeReader(JSONMessage);
+                        String parsedMessage = (String)JSONMessage.get("MESSAGE");
+                        ClientController.showMessage(parsedMessage, messageCode, vbox);
                     } catch (IOException e) {
                         System.out.println("Error reading a message at Client class Listen for message method");
                         closeEverything(socket, reader, writer);
@@ -74,5 +81,32 @@ public class Client {
             System.out.println("error at closeEverything method");
             e.printStackTrace();
         }
+    }
+
+    public JSONObject parseMessage(String message){
+        try {
+            JSONObject parsedMessage = parser.parse(message);
+            return parsedMessage;
+        } catch (ParseException e) {
+            System.out.println("Error parsing JSON message at Client class parseMessage");
+        }
+        return null;
+    }
+
+    public int codeReader(JSONObject jobj){
+        int code;
+        String message = (String)jobj.get("CODE");
+        switch(message){
+            case "MESSAGE":
+                code = 1;
+            break;
+            case "AUCTION":
+                code = 2;
+            break;
+            default:
+                code = 1;
+            break;
+        }
+        return code;
     }
 }

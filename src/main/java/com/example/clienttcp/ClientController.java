@@ -40,36 +40,81 @@ public class ClientController{
     @FXML
     private Text SignInLabel;
     @FXML
+    private Text statusText;
+    @FXML
+    private TextField bidTextField;
+    @FXML
     public VBox chatPane;
     @FXML
     private VBox bidPane;
     @FXML
     private ScrollPane chatScrollPane;
+    @FXML
+    private Button conDisButton;
 
     static private Client client;
     static public String serverMsg = "";
+    public static boolean isConnected = false;
 
     private Timer timer;
     private TimerTask task;
-    String user;
-    JSON4msg msg = new JSON4msg();
+    private static String user;
+    public JSON4msg msg = new JSON4msg();
     //submit action for sign in
     public void submit(ActionEvent event) {
-        //connects to server and sends the profile to be saved in the server
         user = UserName.getText(); //gets the username from the text field in the scene
         if (user != null && !(user.equals("admin"))) {
+            System.out.println("Sing-In Successful");
+            SignInLabel.setStyle("-fx-fill: green;");
+            SignInLabel.setText("Sing-In Successful");
             try {
-                userConnection(event, msg);
-            } catch (IOException e) {
+                timer = new Timer();
+                task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    //after sign in changes to auction scene
+                                    switchToAuctionScene(event);
+                                } catch (IOException e) {
+                                    System.out.println("error in switchToAuctionScene try catch");
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        });
+                    }
+                };
+                timer.schedule(task, 1000);
+            } catch (Exception e) {
+                System.out.println("Sing-In Failed");
+                SignInLabel.setStyle("-fx-fill: red;");
+                SignInLabel.setText("Sing-In Failed");
                 throw new RuntimeException(e);
             }
+            setUser(user);
         }
-        System.out.println(msg.profileToString()); //debug to see the username and UUID in console
     }
-    //onclick event to close the program with quit button in auction scene
-    public void quit(ActionEvent event){
-        Platform.exit();
-        System.exit(0);
+    public void setUser(String username){
+        this.user = username;
+    }
+    public void connectDisconnect(ActionEvent event){
+        if(isConnected == false){
+            try {
+                userConnection(event, msg, user);
+            } catch (IOException e) {
+                System.out.println("connection failure at connect function");
+                throw new RuntimeException(e);
+            }
+            client.listenForMessages(chatPane);
+            conDisButton.setText("QUIT");
+            isConnected = true;
+        }
+        else{
+            Platform.exit();
+            System.exit(1);
+        }
     }
     //switch scene function
     public void switchToAuctionScene(ActionEvent event) throws IOException {
@@ -81,52 +126,35 @@ public class ClientController{
 
     }
 
-    public void userConnection(ActionEvent event, JSON4msg msg) throws IOException{
+    public void userConnection(ActionEvent event, JSON4msg msg, String user) throws IOException{
         try{
             Socket socket = new Socket("localhost", 1234); //generates socket (ip address, port)
             client = new Client(socket, user); //connects to the server through the socket
             msg.setProfile(user, client.getUuid()); //sets the user and the UUID in the json file
             client.sendMessage(msg.getProfile().toString()); //sends profile to server (username and UUID)
-            System.out.println("connected to server");
-            SignInLabel.setStyle("-fx-fill: green;");
-            SignInLabel.setText("Connection Successful");
-
-            //after sign in, use timer to change the label and update the scene
-            timer = new Timer();
-            task = new TimerTask() {
-                @Override
-                public void run() {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                //after sign in changes to auction scene
-                                switchToAuctionScene(event);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    });
-                }
-            };
-            timer.schedule(task, 1000);
+            System.out.println("Status: Connected");
+            statusText.setText("Status: Connected");
+            chatTextField.clear();
+            bidTextField.clear();
+            System.out.println(msg.profileToString()); //debug to see the username and UUID in console
         }catch (IOException e){
             // if connection is failed then show error message on scene
-            System.out.println("Failed to connect to server");
-            SignInLabel.setStyle("-fx-fill: red;");
-            SignInLabel.setText("Connection Failed");
+            System.out.println("Status: Disconnected");
+            statusText.setText("Status: Disconnected");
         }
     }
 
     public void sendChatMessage(ActionEvent event) {
         String message = chatTextField.getText();
-        if (message!= null && (!message.equals(""))) {
-            msg.setMessage(message);
-            client.sendMessage(msg.getProfile().toString());
-            HBox hbox = createHBox(message);
-            chatPane.getChildren().add(hbox);
-            msg.resetMessage();
-            chatTextField.setText("");
+        try {
+            if (message!= null && (!message.equals(""))) {
+                msg.setMessage(message);
+                client.sendMessage(msg.getProfile().toString());
+                msg.resetMessage();
+                chatTextField.setText("");
+            }
+        } catch (Exception o){
+            chatTextField.setText("ERROR: Disconnected from server");
         }
     }
 
