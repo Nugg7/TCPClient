@@ -150,7 +150,7 @@ public class ClientController{
         String message = chatTextField.getText();
         try {
             if (message!= null && (!message.equals(""))) {
-                msg.setMessage(message);
+                msg.setMessage(message + "\u200e");
                 client.sendMessage(msg.getProfile().toString());
                 msg.resetMessage();
                 chatTextField.clear();
@@ -164,6 +164,7 @@ public class ClientController{
         String message = bidTextField.getText();
         if (message != null){
          try{
+             message = message.replaceAll(" ", "");
              double value = Double.parseDouble(message);
              msg.setMessage(message);
              client.sendMessage(msg.getProfile().toString());
