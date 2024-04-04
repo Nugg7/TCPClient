@@ -96,7 +96,7 @@
                      <SplitPane dividerPositions="0.5" prefHeight="34.0" prefWidth="346.0">
                         <items>
                                     <Button fx:id="sendMessageButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="173.0" text="Send" />
-                           <Button fx:id="sendMessageButton1" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="173.0" text="Start Auction" />
+                           <Button fx:id="startAuctionButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="173.0" text="Start Auction" />
                         </items>
                      </SplitPane>
                   </children>
