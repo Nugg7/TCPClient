@@ -90,12 +90,12 @@
                         <children>
                             <SplitPane prefHeight="32.0" prefWidth="242.0">
                                 <items>
-                                    <TextField fx:id="chatTextField" prefHeight="26.0" prefWidth="227.0" text="Enter something" />
+                                    <TextField fx:id="chatTextField" prefHeight="26.0" prefWidth="227.0" />
                                 </items>
                             </SplitPane>
                             <SplitPane layoutX="243.0" layoutY="-1.0" prefHeight="34.0" prefWidth="102.0">
                                 <items>
-                                    <Button fx:id="sendMessageButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="30.0" prefWidth="101.0" text="Send" />
+                                    <Button fx:id="sendMessageButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="101.0" text="Send" />
                                 </items>
                             </SplitPane>
                         </children>
@@ -104,13 +104,13 @@
                         <children>
                             <SplitPane prefHeight="33.0" prefWidth="174.0">
                                 <items>
-                                    <TextField fx:id="bidTextField" prefHeight="26.0" prefWidth="231.0" text="Enter bid" />
+                                    <TextField fx:id="bidTextField" prefHeight="26.0" prefWidth="231.0" />
                                 </items>
                             </SplitPane>
                             <SplitPane dividerPositions="0.5" layoutX="174.0" layoutY="-2.0" prefHeight="34.0" prefWidth="174.0">
                                 <items>
-                                    <Button fx:id="bidButton" mnemonicParsing="false" onAction="#sendBid" prefHeight="30.0" prefWidth="87.0" text="Bid" />
-                                    <Button fx:id="conDisButton" mnemonicParsing="false" onAction="#connectDisconnect" prefHeight="30.0" prefWidth="184.0" text="Connect" />
+                                    <Button fx:id="bidButton" mnemonicParsing="false" onAction="#sendBid" prefHeight="34.0" prefWidth="87.0" text="Bid" />
+                                    <Button fx:id="conDisButton" mnemonicParsing="false" onAction="#connectDisconnect" prefHeight="34.0" prefWidth="184.0" text="Connect" />
                                 </items>
                             </SplitPane>
                         </children>
