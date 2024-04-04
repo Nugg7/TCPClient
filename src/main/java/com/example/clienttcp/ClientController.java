@@ -110,7 +110,7 @@ public class ClientController{
                 throw new RuntimeException(e);
             }
             client.listenForMessages(chatPane, bidPane);
-            conDisButton.setText("QUIT");
+            conDisButton.setText("Quit");
             isConnected = true;
         }
         else{
@@ -150,7 +150,7 @@ public class ClientController{
         String message = chatTextField.getText();
         try {
             if (message!= null && (!message.equals(""))) {
-                msg.setMessage(message + "\u200e");
+                msg.setMessage(message + "\u200e"); //invisible character in case message is only numbers
                 client.sendMessage(msg.getProfile().toString());
                 msg.resetMessage();
                 chatTextField.clear();
@@ -218,14 +218,7 @@ public class ClientController{
         });
     }
 
-    /*@Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*chatPane.heightProperty().addListener(new ChangeListener<Number>(){
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue){
-                chatScrollPane.setVvalue((Double) newValue);
-            }
-        });
-        VBox vbox = chatPane;
-    }*/
+    public void numericOnly(ActionEvent event) {
+
+    }
 }
