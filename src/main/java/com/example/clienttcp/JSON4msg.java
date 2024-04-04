@@ -77,4 +77,8 @@ public class JSON4msg {
         doc.put("message", "");
         write();
     }
+    public JSONObject parse(String s) throws ParseException {
+        JSONObject json = (JSONObject) jsonParser.parse(s);
+        return json;
+    }
 }
