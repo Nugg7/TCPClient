@@ -1,7 +1,12 @@
 package com.example.clienttcp;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
@@ -65,7 +70,8 @@ public class Client {
                             } catch (IOException e){
                                 closeEverything(socket, reader, writer);
                                 ClientController.setDisconnected(text);
-                                System.out.println("Connection error: you were diconnected"); // To change with pop up message that closes the client
+                                ClientController.showDisconnectScene();
+                                System.out.println("Connection error: you were disconnected"); // To change with pop up message that closes the client
                                 break;
                             }
                             JSONObject JSONMessage = parseMessage(message);
@@ -82,9 +88,9 @@ public class Client {
                             String parsedMessage = (String) JSONMessage.get("MESSAGE");
                             ClientController.showMessage(parsedMessage, panel);
                         } catch (Exception e) {
+                            throw new RuntimeException(ex);
                             System.out.println("Error reading a message at Client class Listen for message method");
                             closeEverything(socket, reader, writer);
-                            e.printStackTrace();
                         }
                     }
                 }

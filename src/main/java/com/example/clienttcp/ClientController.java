@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
@@ -40,7 +41,9 @@ public class ClientController {
     @FXML
     private TextField bidTextField;
     @FXML
-    public VBox chatPane;
+    private VBox chatPane;
+    @FXML
+    private Text errorText;
     @FXML
     private VBox bidPane;
     @FXML
@@ -49,12 +52,15 @@ public class ClientController {
     private ScrollPane bidScrollPane;
     @FXML
     private Button conDisButton;
+    @FXML
+    private VBox parentPane;
     static private Client client;
     public static boolean isConnected = false;
 
     private Timer timer;
     private TimerTask task;
     private static String user;
+
     public JSON4msg msg = new JSON4msg();
 
     //submit action for sign in
@@ -70,9 +76,9 @@ public class ClientController {
                             @Override
                             public void run() {
                                 try {
-                                    //after sign in changes to auction scene
                                     switchToAuctionScene(event);
                                 } catch (IOException e) {
+                                    SignInLabel.setText("error in switchToAuctionScene try catch");
                                     System.out.println("error in switchToAuctionScene try catch");
                                     throw new RuntimeException(e);
                                 }
@@ -97,7 +103,7 @@ public class ClientController {
         this.user = username;
     }
 
-    public void connectDisconnect(ActionEvent event) {
+    public void connectDisconnect(ActionEvent event) throws IOException {
         try{
             if (isConnected == false) {
                 userConnection(event, msg, user);
@@ -110,7 +116,7 @@ public class ClientController {
                 System.exit(1);
             }
         }catch (Exception e){
-            System.out.println("ERROR: connection to server failed");
+            showError("connection to server failed");
         }
     }
 
@@ -121,7 +127,6 @@ public class ClientController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
     public void userConnection(ActionEvent event, JSON4msg msg, String user) throws IOException {
@@ -138,11 +143,11 @@ public class ClientController {
             statusText.setText("Status: Connected");
             chatTextField.clear();
             bidTextField.clear();
-            bidTextField.setText("");
             System.out.println(msg.profileToString()); //debug to see the username and UUID in console
         } catch (IOException e) {
             // if connection is failed then show error message on scene
             statusText.setText("Status: Disconnected");
+            showError("connection to server failed");
         }
     }
 
@@ -160,36 +165,10 @@ public class ClientController {
             }
         } catch (Exception o) {
             if (statusText.getText().equals("Status: Disconnected")) {
-                chatTextField.setText("ERROR: Disconnected from server");
-                timer = new Timer();
-                task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                chatTextField.clear();
-                            }
-                        });
-                    }
-                };
-                timer.schedule(task, 1000);
+                showError("Disconnected from server");
             }
             else {
-                chatTextField.setText("ERROR: couldn't send message");
-                timer = new Timer();
-                task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                chatTextField.clear();
-                            }
-                        });
-                    }
-                };
-                timer.schedule(task, 1000);
+                showError("Couldn't send message");
             }
         }
     }
@@ -210,22 +189,9 @@ public class ClientController {
             } catch (Exception e) {
                 bidTextField.clear(); // This only works before connection since the textField accepts only numbers after connection
                 if (statusText.getText().equals("Status: Disconnected")) {
-                    bidTextField.setText("ERROR: Disconnected from server");
-                    timer = new Timer();
-                    task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    bidTextField.clear();
-                                }
-                            });
-                        }
-                    };
-                    timer.schedule(task, 1000);
+                    showError("Disconnected from server");
                 } else {
-                    bidTextField.setText("ERROR: couldn't send bid");
+                    showError("Couldn't send bid");
                 }
             }
         }
@@ -259,4 +225,23 @@ public class ClientController {
     public static void setDisconnected(Text text){
         text.setText("Status: Disconnected");
     }
+
+    public void showError(String error){
+        errorText.setText("ERROR: " + error);
+        errorText.setTextAlignment(TextAlignment.CENTER);
+        timer = new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        errorText.setText("");
+                    }
+                });
+            }
+        };
+        timer.schedule(task, 1000);
+    }
+
 }
