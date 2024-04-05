@@ -70,7 +70,6 @@ public class Client {
                             } catch (IOException e){
                                 closeEverything(socket, reader, writer);
                                 ClientController.setDisconnected(text);
-                                ClientController.showDisconnectScene();
                                 System.out.println("Connection error: you were disconnected"); // To change with pop up message that closes the client
                                 break;
                             }
@@ -88,7 +87,6 @@ public class Client {
                             String parsedMessage = (String) JSONMessage.get("MESSAGE");
                             ClientController.showMessage(parsedMessage, panel);
                         } catch (Exception e) {
-                            throw new RuntimeException(ex);
                             System.out.println("Error reading a message at Client class Listen for message method");
                             closeEverything(socket, reader, writer);
                         }
