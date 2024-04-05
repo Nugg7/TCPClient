@@ -52,8 +52,6 @@ public class ClientController {
     private ScrollPane bidScrollPane;
     @FXML
     private Button conDisButton;
-    @FXML
-    private VBox parentPane;
     static private Client client;
     public static boolean isConnected = false;
 
@@ -104,7 +102,7 @@ public class ClientController {
     }
 
     public void connectDisconnect(ActionEvent event) throws IOException {
-        try{
+        try {
             if (isConnected == false) {
                 userConnection(event, msg, user);
                 client.listenForMessages(chatPane, bidPane, statusText);
@@ -115,7 +113,7 @@ public class ClientController {
                 Platform.exit();
                 System.exit(1);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             showError("connection to server failed");
         }
     }
@@ -131,11 +129,10 @@ public class ClientController {
 
     public void userConnection(ActionEvent event, JSON4msg msg, String user) throws IOException {
         try {
-            try{
+            try {
                 Socket socket = new Socket("localhost", 1234); //generates socket (ip address, port)
                 client = new Client(socket, user); //connects to the server through the socket
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 throw new IOException();
             }
             msg.setProfile(user, client.getUuid()); //sets the user and the UUID in the json file
@@ -159,15 +156,13 @@ public class ClientController {
                 client.sendMessage(msg.getProfile().toString());
                 msg.resetMessage();
                 chatTextField.clear();
-            }
-            else{
+            } else {
                 throw new Exception();
             }
         } catch (Exception o) {
             if (statusText.getText().equals("Status: Disconnected")) {
                 showError("Disconnected from server");
-            }
-            else {
+            } else {
                 showError("Couldn't send message");
             }
         }
@@ -178,7 +173,7 @@ public class ClientController {
         if (message != null && !(message.equals(",0") || message.equals(".0"))) {
             try {
                 if (message.substring(0).equals("0")) {
-                    message = message.replace(message.substring(0),"");
+                    message = message.replace(message.substring(0), "");
                 }
                 message = message.replace(",", ".");
                 message = message.replaceAll(" ", "");
@@ -222,11 +217,11 @@ public class ClientController {
         });
     }
 
-    public static void setDisconnected(Text text){
+    public static void setDisconnected(Text text) {
         text.setText("Status: Disconnected");
     }
 
-    public void showError(String error){
+    public void showError(String error) {
         errorText.setText("ERROR: " + error);
         errorText.setTextAlignment(TextAlignment.CENTER);
         timer = new Timer();
@@ -243,5 +238,8 @@ public class ClientController {
         };
         timer.schedule(task, 1000);
     }
-
+    public void close(ActionEvent event){
+        Platform.exit();
+        System.exit(0);
+    }
 }
