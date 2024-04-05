@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
+<VBox fx:id="parentPane" alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -80,6 +80,7 @@
                             </SplitPane>
                         </items>
                     </SplitPane>
+               <Text fx:id="errorText" layoutX="191.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="320.0" />
                 </children>
             </Pane>
         </center>
