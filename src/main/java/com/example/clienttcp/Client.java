@@ -1,20 +1,12 @@
 package com.example.clienttcp;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.*;
-import java.security.CodeSource;
 import java.util.UUID;
 public class Client {
 

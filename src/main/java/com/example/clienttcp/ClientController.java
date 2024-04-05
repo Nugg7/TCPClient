@@ -29,7 +29,13 @@ import javafx.stage.WindowEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
-// TODO: add an error label for when the client is disconnected and client tries to send messages or bids (since after connections bid textField is only numeric)
+/**
+ * TODO:
+ * Admin Sign In:
+ * - After typing admin in signInTextField change only signInLabel to "enter the password or type exit to go back as normal user"
+ * - if successful show products-view,fxml (still todo : has series of text fields and a button to switch scene)
+ * - after entering products and confirming, show Admin-view.fxml
+  */
 
 public class ClientController {
     @FXML
