@@ -133,6 +133,7 @@ public class ClientController {
             statusText.setText("Status: Connected");
             chatTextField.clear();
             bidTextField.clear();
+            bidTextField.setText("");
             System.out.println(msg.profileToString()); //debug to see the username and UUID in console
         } catch (IOException e) {
             // if connection is failed then show error message on scene
@@ -159,6 +160,10 @@ public class ClientController {
         String message = bidTextField.getText();
         if (message != null) {
             try {
+                if (message.substring(0).equals("0")) {
+                    message = message.replace(message.substring(0),"");
+                }
+                message = message.replace(",", ".");
                 message = message.replaceAll(" ", "");
                 double value = Double.parseDouble(message);
                 msg.setMessage(message);

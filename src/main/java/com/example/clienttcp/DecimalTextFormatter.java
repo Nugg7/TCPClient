@@ -49,12 +49,13 @@ public class DecimalTextFormatter extends TextFormatter<Number> {
             }
 
             // Allow only digits, decimal point, and negative sign
-            if (!newText.matches("-?\\d*\\.?\\d*")) {
+            if (!newText.matches("-?\\d*[.,]?\\d*")) {
                 return null;
             }
 
             // Limit the number of decimal places
             if (maxDecimals >= 0) {
+                newText = newText.replace(",", ".");
                 int decimalIndex = newText.indexOf(".");
                 if (decimalIndex >= 0 && newText.substring(decimalIndex + 1).length() > maxDecimals) {
                     return null;
