@@ -1,5 +1,7 @@
 package com.example.clienttcp;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -57,12 +59,12 @@ public class Client {
         }
     }
 
-    public void listenForMessages(VBox chatPane, VBox bidPane, Text text){
+    public void listenForMessages(VBox chatPane, VBox bidPane, Text text, Text error){
         try{
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String message;
+                    String message = "";
                     while (socket.isConnected()) {
                         try {
                             try {
@@ -70,6 +72,7 @@ public class Client {
                             } catch (IOException e){
                                 closeEverything(socket, reader, writer);
                                 ClientController.setDisconnected(text);
+                                ClientController.setErrorText(error);
                                 System.out.println("Connection error: you were disconnected"); // To change with pop up message that closes the client
                                 break;
                             }

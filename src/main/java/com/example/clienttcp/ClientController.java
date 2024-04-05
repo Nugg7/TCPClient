@@ -107,7 +107,7 @@ public class ClientController {
         try {
             if (isConnected == false) {
                 userConnection(event, msg, user);
-                client.listenForMessages(chatPane, bidPane, statusText);
+                client.listenForMessages(chatPane, bidPane, statusText, errorText);
                 bidTextField.setTextFormatter(new DecimalTextFormatter(0, 2)); // had to put these here because in any other place the TextField is not initialized yet
                 conDisButton.setText("Quit");
                 isConnected = true;
@@ -254,5 +254,9 @@ public class ClientController {
     public void close(ActionEvent event){
         Platform.exit();
         System.exit(0);
+    }
+    public static void setErrorText(Text text) {
+        text.setText("ERROR: Disconnected by the server");
+        text.setTextAlignment(TextAlignment.CENTER);
     }
 }
