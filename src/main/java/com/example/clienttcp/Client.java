@@ -1,6 +1,7 @@
 package com.example.clienttcp;
 
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
@@ -40,18 +41,18 @@ public class Client {
         return username;
     }
 
-    public void sendMessage(String message){
+    public void sendMessage(String message) throws IOException {
         try{
             writer.write(message);
             writer.newLine();
             writer.flush();
         }catch(IOException e){
             System.out.println("Error sending a message at Client class");
-            e.printStackTrace();
+            throw new IOException();
         }
     }
 
-    public void listenForMessages(VBox chatPane, VBox bidPane){
+    public void listenForMessages(VBox chatPane, VBox bidPane, Text text){
         try{
             new Thread(new Runnable() {
                 @Override
@@ -63,6 +64,7 @@ public class Client {
                                 message = reader.readLine();
                             } catch (IOException e){
                                 closeEverything(socket, reader, writer);
+                                ClientController.setDisconnected(text);
                                 System.out.println("Connection error: you were diconnected"); // To change with pop up message that closes the client
                                 break;
                             }
@@ -88,7 +90,7 @@ public class Client {
                 }
             }).start();
         }catch(Exception e) {
-            System.out.println("Connection error: you were diconnected");
+            System.out.println("Connection error: you were disconnected");
         }
     }
 

@@ -26,6 +26,8 @@ import javafx.stage.Stage;
 import java.util.Timer;
 import java.util.TimerTask;
 
+// TODO: add an error label for when the client is disconnected and client tries to send messages or bids (since after connections bid textField is only numeric)
+
 public class ClientController {
     @FXML
     private TextField UserName;
@@ -96,20 +98,19 @@ public class ClientController {
     }
 
     public void connectDisconnect(ActionEvent event) {
-        if (isConnected == false) {
-            try {
+        try{
+            if (isConnected == false) {
                 userConnection(event, msg, user);
-            } catch (IOException e) {
-                System.out.println("connection failure at connect function");
-                throw new RuntimeException(e);
+                client.listenForMessages(chatPane, bidPane, statusText);
+                bidTextField.setTextFormatter(new DecimalTextFormatter(0, 2)); // had to put these here because in any other place the TextField is not initialized yet
+                conDisButton.setText("Quit");
+                isConnected = true;
+            } else {
+                Platform.exit();
+                System.exit(1);
             }
-            client.listenForMessages(chatPane, bidPane);
-            bidTextField.setTextFormatter(new DecimalTextFormatter(0, 2)); // had to put these here because in any other place the TextField is not initialized yet
-            conDisButton.setText("Quit");
-            isConnected = true;
-        } else {
-            Platform.exit();
-            System.exit(1);
+        }catch (Exception e){
+            System.out.println("ERROR: connection to server failed");
         }
     }
 
@@ -125,11 +126,15 @@ public class ClientController {
 
     public void userConnection(ActionEvent event, JSON4msg msg, String user) throws IOException {
         try {
-            Socket socket = new Socket("localhost", 1234); //generates socket (ip address, port)
-            client = new Client(socket, user); //connects to the server through the socket
+            try{
+                Socket socket = new Socket("localhost", 1234); //generates socket (ip address, port)
+                client = new Client(socket, user); //connects to the server through the socket
+            }
+            catch (Exception e){
+                throw new IOException();
+            }
             msg.setProfile(user, client.getUuid()); //sets the user and the UUID in the json file
             client.sendMessage(msg.getProfile().toString()); //sends profile to server (username and UUID)
-            System.out.println("Status: Connected");
             statusText.setText("Status: Connected");
             chatTextField.clear();
             bidTextField.clear();
@@ -137,7 +142,6 @@ public class ClientController {
             System.out.println(msg.profileToString()); //debug to see the username and UUID in console
         } catch (IOException e) {
             // if connection is failed then show error message on scene
-            System.out.println("Status: Disconnected");
             statusText.setText("Status: Disconnected");
         }
     }
@@ -151,14 +155,48 @@ public class ClientController {
                 msg.resetMessage();
                 chatTextField.clear();
             }
+            else{
+                throw new Exception();
+            }
         } catch (Exception o) {
-            chatTextField.setText("ERROR: Disconnected from server");
+            if (statusText.getText().equals("Status: Disconnected")) {
+                chatTextField.setText("ERROR: Disconnected from server");
+                timer = new Timer();
+                task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                chatTextField.clear();
+                            }
+                        });
+                    }
+                };
+                timer.schedule(task, 1000);
+            }
+            else {
+                chatTextField.setText("ERROR: couldn't send message");
+                timer = new Timer();
+                task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                chatTextField.clear();
+                            }
+                        });
+                    }
+                };
+                timer.schedule(task, 1000);
+            }
         }
     }
 
     public void sendBid(ActionEvent event) {
         String message = bidTextField.getText();
-        if (message != null) {
+        if (message != null && !(message.equals(",0") || message.equals(".0"))) {
             try {
                 if (message.substring(0).equals("0")) {
                     message = message.replace(message.substring(0),"");
@@ -170,10 +208,9 @@ public class ClientController {
                 client.sendMessage(msg.getProfile().toString());
                 bidTextField.clear();
             } catch (Exception e) {
+                bidTextField.clear(); // This only works before connection since the textField accepts only numbers after connection
                 if (statusText.getText().equals("Status: Disconnected")) {
                     bidTextField.setText("ERROR: Disconnected from server");
-                } else {
-                    bidTextField.setText("ERROR: not a number");
                     timer = new Timer();
                     task = new TimerTask() {
                         @Override
@@ -187,6 +224,8 @@ public class ClientController {
                         }
                     };
                     timer.schedule(task, 1000);
+                } else {
+                    bidTextField.setText("ERROR: couldn't send bid");
                 }
             }
         }
@@ -215,5 +254,9 @@ public class ClientController {
                 vbox.getChildren().add(hbox);
             }
         });
+    }
+
+    public static void setDisconnected(Text text){
+        text.setText("Status: Disconnected");
     }
 }
