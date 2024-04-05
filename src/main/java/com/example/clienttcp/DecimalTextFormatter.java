@@ -9,7 +9,7 @@ public class DecimalTextFormatter extends TextFormatter<Number> {
     private static DecimalFormat format = new DecimalFormat("#.0;-#.0"); // format variable
 
     public DecimalTextFormatter(int minDecimals, int maxDecimals) {
-        super(getStringConverter(minDecimals, maxDecimals), 0, getUnaryOperator(maxDecimals, false, 9));
+        super(getStringConverter(minDecimals, maxDecimals), 0, getUnaryOperator(maxDecimals, false, -1));
     }
 
     private static StringConverter<Number> getStringConverter(int minDecimals, int maxDecimals) {
