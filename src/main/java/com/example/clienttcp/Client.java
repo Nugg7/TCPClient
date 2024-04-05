@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.*;
+import java.security.CodeSource;
 import java.util.UUID;
 public class Client {
 
@@ -51,34 +52,44 @@ public class Client {
     }
 
     public void listenForMessages(VBox chatPane, VBox bidPane){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String message;
-                while (socket.isConnected()) {
-                    try {
-                        message = reader.readLine();
-                        JSONObject JSONMessage = parseMessage(message);
-                        int messageCode = codeReader(JSONMessage);
-                        VBox panel = null;
-                        switch (messageCode){
-                            case 1 :
-                                panel = chatPane;
-                            break;
-                            case 3 :
-                                panel = bidPane;
-                            break;
+        try{
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String message;
+                    while (socket.isConnected()) {
+                        try {
+                            try {
+                                message = reader.readLine();
+                            } catch (IOException e){
+                                closeEverything(socket, reader, writer);
+                                System.out.println("Connection error: you were diconnected"); // To change with pop up message that closes the client
+                                break;
+                            }
+                            JSONObject JSONMessage = parseMessage(message);
+                            int messageCode = codeReader(JSONMessage);
+                            VBox panel = null;
+                            switch (messageCode) {
+                                case 1:
+                                    panel = chatPane;
+                                    break;
+                                case 3:
+                                    panel = bidPane;
+                                    break;
+                            }
+                            String parsedMessage = (String) JSONMessage.get("MESSAGE");
+                            ClientController.showMessage(parsedMessage, panel);
+                        } catch (Exception e) {
+                            System.out.println("Error reading a message at Client class Listen for message method");
+                            closeEverything(socket, reader, writer);
+                            e.printStackTrace();
                         }
-                        String parsedMessage = (String)JSONMessage.get("MESSAGE");
-                        ClientController.showMessage(parsedMessage, panel);
-                    } catch (IOException e) {
-                        System.out.println("Error reading a message at Client class Listen for message method");
-                        closeEverything(socket, reader, writer);
-                        e.printStackTrace();
                     }
                 }
-            }
-        }).start();
+            }).start();
+        }catch(Exception e) {
+            System.out.println("Connection error: you were diconnected");
+        }
     }
 
     public void closeEverything(Socket clientSocket, BufferedReader breader, BufferedWriter bwriter){
