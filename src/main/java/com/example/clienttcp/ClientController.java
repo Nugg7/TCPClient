@@ -2,6 +2,7 @@ package com.example.clienttcp;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -23,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -125,6 +127,17 @@ public class ClientController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() // whenever closed with x on top bar, stops the process in the ide
+        {
+            public void handle(WindowEvent e){
+                try {
+                    System.exit(0);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
     }
 
     public void userConnection(ActionEvent event, JSON4msg msg, String user) throws IOException {
