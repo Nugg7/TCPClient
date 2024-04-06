@@ -80,7 +80,7 @@ public class ClientController  {
     private Timer timer;
     private TimerTask task;
     private static String user;
-    private static String password;
+    private static String password = "admin1234";
 
     public JSON4msg msg = new JSON4msg();
 
@@ -123,9 +123,22 @@ public class ClientController  {
             SignInLabel.setStyle("-fx-fill: red;");
             SignInLabel.setText("Please enter a username");
         } else if (user.equals("ADMIN")) {
-            String password = "";
             passField.setVisible(true);
             SignInLabel.setText("Please enter a password");
+            String password = passField.getText();
+            if (password.equals(password)) {
+                try {
+                    switchToProcductsScene(event);
+                } catch (IOException e) {
+                    System.out.println("Sing-In Failed");
+                    SignInLabel.setStyle("-fx-fill: red;");
+                    SignInLabel.setText("Sing-In Failed");
+                }
+            }
+            else {
+                SignInLabel.setStyle("-fx-fill: red;");
+                SignInLabel.setText("Wrong password");
+            }
         }
     }
 
@@ -153,6 +166,25 @@ public class ClientController  {
     //switch scene function
     public void switchToAuctionScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Auction-view.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() // whenever closed with x on top bar, stops the process in the ide
+        {
+            public void handle(WindowEvent e){
+                try {
+                    System.exit(0);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void switchToProcductsScene(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("products-view.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
