@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
+<VBox fx:id="parentPane" alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -37,7 +37,7 @@
                                         <children>
                                             <ScrollPane fx:id="chatScrollPane" prefHeight="290.0" prefWidth="432.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="419.0">
+                                                    <AnchorPane fx:id="chatAnchor" minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="419.0">
                                                         <children>
                                                             <VBox fx:id="chatPane" prefHeight="285.0" prefWidth="418.0" />
                                                         </children>
@@ -65,11 +65,11 @@
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                         <children>
-                                            <ScrollPane fx:id="bidScrollpane" prefHeight="292.0" prefWidth="264.0">
+                                            <ScrollPane fx:id="bidScrollPane" prefHeight="292.0" prefWidth="264.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="251.0">
+                                                    <AnchorPane fx:id="bidAnchor" minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="251.0">
                                                         <children>
-                                                            <VBox fx:id="bidPane" prefHeight="285.0" prefWidth="252.0" />
+                                                            <VBox fx:id="bidPane" prefHeight="291.0" prefWidth="252.0" />
                                                         </children>
                                                     </AnchorPane>
                                                 </content>
@@ -80,27 +80,42 @@
                             </SplitPane>
                         </items>
                     </SplitPane>
+                    <Text fx:id="errorText" layoutX="191.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="320.0" />
                 </children>
             </Pane>
         </center>
         <bottom>
-            <SplitPane dividerPositions="0.5" prefHeight="34.0" prefWidth="701.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.4978540772532189" prefHeight="34.0" prefWidth="701.0" BorderPane.alignment="CENTER">
                 <items>
-               <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                  <children>
-                              <TextField fx:id="chatTextField" prefHeight="32.0" prefWidth="347.0" />
-                  </children>
-               </AnchorPane>
-               <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                  <children>
-                     <SplitPane dividerPositions="0.5" prefHeight="34.0" prefWidth="346.0">
-                        <items>
-                                    <Button fx:id="sendMessageButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="173.0" text="Send" />
-                           <Button fx:id="startAuctionButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="173.0" text="Start Auction" />
-                        </items>
-                     </SplitPane>
-                  </children>
-               </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <children>
+                            <SplitPane prefHeight="32.0" prefWidth="242.0">
+                                <items>
+                                    <TextField fx:id="chatTextField" prefHeight="26.0" prefWidth="227.0" />
+                                </items>
+                            </SplitPane>
+                            <SplitPane layoutX="243.0" layoutY="-1.0" prefHeight="34.0" prefWidth="102.0">
+                                <items>
+                                    <Button fx:id="sendMessageButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="101.0" text="Send" />
+                                </items>
+                            </SplitPane>
+                        </children>
+                    </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="32.0" prefWidth="178.0">
+                        <children>
+                            <SplitPane prefHeight="33.0" prefWidth="174.0">
+                                <items>
+                                    <TextField fx:id="bidTextField" prefHeight="26.0" prefWidth="231.0" />
+                                </items>
+                            </SplitPane>
+                            <SplitPane dividerPositions="0.5" layoutX="174.0" layoutY="-2.0" prefHeight="34.0" prefWidth="174.0">
+                                <items>
+                                    <Button fx:id="bidButton" mnemonicParsing="false" onAction="#sendBid" prefHeight="34.0" prefWidth="87.0" text="Bid" />
+                                    <Button fx:id="conDisButton" mnemonicParsing="false" onAction="#connectDisconnect" prefHeight="34.0" prefWidth="184.0" text="Connect" />
+                                </items>
+                            </SplitPane>
+                        </children>
+                    </AnchorPane>
                 </items>
             </SplitPane>
         </bottom>
@@ -109,7 +124,7 @@
                 <items>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                         <children>
-                            <Text fx:id="statusText" layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auction Status: Waiting" wrappingWidth="317.00299072265625">
+                            <Text fx:id="statusText" layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status: Disconnected" wrappingWidth="317.00299072265625">
                                 <font>
                                     <Font size="29.0" />
                                 </font>
