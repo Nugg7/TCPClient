@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="parentPane" alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
+<VBox fx:id="parentPane" alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -37,7 +37,7 @@
                                         <children>
                                             <ScrollPane fx:id="chatScrollPane" prefHeight="290.0" prefWidth="432.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="419.0">
+                                                    <AnchorPane fx:id="chatAnchor" minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="419.0">
                                                         <children>
                                                             <VBox fx:id="chatPane" prefHeight="285.0" prefWidth="418.0" />
                                                         </children>
@@ -67,9 +67,9 @@
                                         <children>
                                             <ScrollPane fx:id="bidScrollPane" prefHeight="292.0" prefWidth="264.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="251.0">
+                                                    <AnchorPane fx:id="bidAnchor" minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="251.0">
                                                         <children>
-                                                            <VBox fx:id="bidPane" prefHeight="285.0" prefWidth="252.0" />
+                                                            <VBox fx:id="bidPane" prefHeight="291.0" prefWidth="252.0" />
                                                         </children>
                                                     </AnchorPane>
                                                 </content>

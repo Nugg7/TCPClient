@@ -1,5 +1,7 @@
 package com.example.clienttcp;
 
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.json.simple.JSONObject;
@@ -51,7 +53,7 @@ public class Client {
         }
     }
 
-    public void listenForMessages(VBox chatPane, VBox bidPane, Text text, Text error){
+    public void listenForMessages(VBox chatPane, VBox bidPane, Text text, Text error, AnchorPane chatAnc, AnchorPane bidAnc, ScrollPane chatSP, ScrollPane bidSP) {
         try{
             new Thread(new Runnable() {
                 @Override
@@ -71,16 +73,22 @@ public class Client {
                             JSONObject JSONMessage = parseMessage(message);
                             int messageCode = codeReader(JSONMessage);
                             VBox panel = null;
+                            AnchorPane anchor = null;
+                            ScrollPane sp = null;
                             switch (messageCode) {
                                 case 1:
                                     panel = chatPane;
+                                    anchor = chatAnc;
+                                    sp = chatSP;
                                     break;
                                 case 3:
                                     panel = bidPane;
+                                    anchor = bidAnc;
+                                    sp = bidSP;
                                     break;
                             }
                             String parsedMessage = (String) JSONMessage.get("MESSAGE");
-                            ClientController.showMessage(parsedMessage, panel);
+                            ClientController.showMessage(parsedMessage, panel, anchor, sp);
                         } catch (Exception e) {
                             System.out.println("Error reading a message at Client class Listen for message method");
                             closeEverything(socket, reader, writer);

@@ -1,10 +1,13 @@
 package com.example.clienttcp;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -25,7 +29,10 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.json.simple.JSONObject;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -37,7 +44,7 @@ import java.util.TimerTask;
  * - after entering products and confirming, show Admin-view.fxml
   */
 
-public class ClientController {
+public class ClientController  {
     @FXML
     private TextField UserName;
     @FXML
@@ -60,6 +67,10 @@ public class ClientController {
     private ScrollPane bidScrollPane;
     @FXML
     private Button conDisButton;
+    @FXML
+    private AnchorPane chatAnchor;
+    @FXML
+    private AnchorPane bidAnchor;
     static private Client client;
     public static boolean isConnected = false;
 
@@ -113,7 +124,7 @@ public class ClientController {
         try {
             if (isConnected == false) {
                 userConnection(event, msg, user);
-                client.listenForMessages(chatPane, bidPane, statusText, errorText);
+                client.listenForMessages(chatPane, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
                 bidTextField.setTextFormatter(new DecimalTextFormatter(0, 2)); // had to put these here because in any other place the TextField is not initialized yet
                 conDisButton.setText("Quit");
                 isConnected = true;
@@ -226,12 +237,17 @@ public class ClientController {
         return hbox;
     }
 
-    public static void showMessage(String message, VBox vbox) {
+    public static void showMessage(String message, VBox vbox, AnchorPane anchor, ScrollPane sp) {
         HBox hbox = createHBox(message);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 vbox.getChildren().add(hbox);
+                if (vbox.getHeight() > 290) {
+                    anchor.setMinHeight(vbox.getHeight() + 74);
+                    sp.setVvalue(vbox.getHeight());
+                }
+                System.out.println("anchor:" + anchor.getHeight() + "vbox:" + vbox.getHeight());
             }
         });
     }
@@ -257,10 +273,7 @@ public class ClientController {
         };
         timer.schedule(task, 1000);
     }
-    public void close(ActionEvent event){
-        Platform.exit();
-        System.exit(0);
-    }
+
     public static void setErrorText(Text text) {
         text.setText("ERROR: Disconnected by the server");
         text.setTextAlignment(TextAlignment.CENTER);
