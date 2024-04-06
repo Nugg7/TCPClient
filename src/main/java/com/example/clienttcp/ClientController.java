@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 
@@ -71,19 +72,23 @@ public class ClientController  {
     private AnchorPane chatAnchor;
     @FXML
     private AnchorPane bidAnchor;
+    @FXML
+    private PasswordField passField;
     static private Client client;
     public static boolean isConnected = false;
 
     private Timer timer;
     private TimerTask task;
     private static String user;
+    private static String password;
 
     public JSON4msg msg = new JSON4msg();
 
     //submit action for sign in
     public void submit(ActionEvent event) {
         user = UserName.getText(); //gets the username from the text field in the scene
-        if (user != null && !(user.equals("admin")) && !(user.equals(""))) {
+        user = user.trim();
+        if (user != null && !(user.equals("ADMIN")) && !(user.equals(""))) {
             try {
                 timer = new Timer();
                 task = new TimerTask() {
@@ -113,6 +118,14 @@ public class ClientController  {
             SignInLabel.setStyle("-fx-fill: green;");
             SignInLabel.setText("Sing-In Successful");
             setUser(user);
+        }
+        else if((user.equals(""))){
+            SignInLabel.setStyle("-fx-fill: red;");
+            SignInLabel.setText("Please enter a username");
+        } else if (user.equals("ADMIN")) {
+            String password = "";
+            passField.setVisible(true);
+            SignInLabel.setText("Please enter a password");
         }
     }
 
