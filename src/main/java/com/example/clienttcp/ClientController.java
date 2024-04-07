@@ -1,13 +1,10 @@
 package com.example.clienttcp;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -33,19 +30,8 @@ import javafx.stage.WindowEvent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
-/**
- * TODO:
- * Admin Sign In:
- * - After typing admin in signInTextField change only signInLabel to "enter the password or type exit to go back as normal user"
- * - if successful show products-view,fxml (still todo : has series of text fields and a button to switch scene)
- * - after entering products and confirming, show Admin-view.fxml
-  */
 
 public class ClientController  {
     @FXML
@@ -400,7 +386,7 @@ public class ClientController  {
             client.listenForMessages(chatPane, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
             for (Object j : products){
                 client.sendMessage(j.toString());
-            }        
+            }
         } catch (IOException e) {
             System.out.println("error in startAuction method");
         }
