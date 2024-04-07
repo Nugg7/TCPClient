@@ -316,7 +316,6 @@ public class ClientController  {
                     anchor.setMinHeight(vbox.getHeight() + 74);
                     sp.setVvalue(vbox.getHeight());
                 }
-                System.out.println("anchor:" + anchor.getHeight() + "vbox:" + vbox.getHeight());
             }
         });
     }
@@ -387,6 +386,10 @@ public class ClientController  {
             for (Object j : products){
                 client.sendMessage(j.toString());
             }
+            String message = "/START";
+            msg.setMessage(message);
+            client.sendMessage(msg.getProfile().toString());
+            msg.resetMessage();
         } catch (IOException e) {
             System.out.println("error in startAuction method");
         }
