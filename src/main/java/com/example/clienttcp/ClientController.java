@@ -80,7 +80,7 @@ public class ClientController  {
     private Timer timer;
     private TimerTask task;
     private static String user;
-    private static String password = "admin1234";
+    private static String pass = "admin1234";
 
     public JSON4msg msg = new JSON4msg();
 
@@ -122,11 +122,14 @@ public class ClientController  {
         else if((user.equals(""))){
             SignInLabel.setStyle("-fx-fill: red;");
             SignInLabel.setText("Please enter a username");
-        } else if (user.equals("ADMIN")) {
+        }
+        else if (user.equals("ADMIN") && passField.getText().equals("")) {
             passField.setVisible(true);
             SignInLabel.setText("Please enter a password");
+        }
+        else {
             String password = passField.getText();
-            if (password.equals(password)) {
+            if (password.equals(pass) && UserName.getText().equals("ADMIN")) {
                 try {
                     switchToProcductsScene(event);
                 } catch (IOException e) {
@@ -137,7 +140,7 @@ public class ClientController  {
             }
             else {
                 SignInLabel.setStyle("-fx-fill: red;");
-                SignInLabel.setText("Wrong password");
+                SignInLabel.setText("Wrong credentials");
             }
         }
     }
