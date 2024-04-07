@@ -30,9 +30,11 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -74,6 +76,13 @@ public class ClientController  {
     private AnchorPane bidAnchor;
     @FXML
     private PasswordField passField;
+    @FXML
+    private Button setProductsButton;
+    @FXML
+    private TextField p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
+    @FXML
+    private Button startAuctionButton;
+
     static private Client client;
     public static boolean isConnected = false;
 
@@ -83,6 +92,7 @@ public class ClientController  {
     private static String pass = "admin1234";
 
     public JSON4msg msg = new JSON4msg();
+    private static JSONArray products = new JSONArray();
 
     //submit action for sign in
     public void submit(ActionEvent event) {
@@ -166,10 +176,15 @@ public class ClientController  {
         }
     }
 
+    public Stage getStage(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        return stage;
+    }
+
     //switch scene function
     public void switchToAuctionScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Auction-view.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = getStage(event);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -188,7 +203,26 @@ public class ClientController  {
 
     public void switchToProcductsScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("products-view.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = getStage(event);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() // whenever closed with x on top bar, stops the process in the ide
+        {
+            public void handle(WindowEvent e){
+                try {
+                    System.exit(0);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void switchToAdmin(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Admin-view.fxml"));
+        Stage stage = getStage(event);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -215,9 +249,10 @@ public class ClientController  {
             }
             msg.setProfile(user, client.getUuid()); //sets the user and the UUID in the json file
             client.sendMessage(msg.getProfile().toString()); //sends profile to server (username and UUID)
-            statusText.setText("Status: Connected");
-            chatTextField.clear();
-            bidTextField.clear();
+            if (!(user.equals("ADMIN")))
+                statusText.setText("Status: Connected");
+            else
+                statusText.setText("Auction Status: Started");
             System.out.println(msg.profileToString()); //debug to see the username and UUID in console
         } catch (IOException e) {
             // if connection is failed then show error message on scene
@@ -325,5 +360,49 @@ public class ClientController  {
     public static void setErrorText(Text text) {
         text.setText("ERROR: Disconnected by the server");
         text.setTextAlignment(TextAlignment.CENTER);
+    }
+    public void setProducts(ActionEvent event) {
+        String prods = getProducts();
+        String[] sortedProds = prods.split("/");
+        for (String prod : sortedProds){
+            if (prods != null && !(prod.equals(""))){
+                JSONObject prodToSend = new JSONObject();
+                prodToSend.put("username", "PRODUCT");
+                prodToSend.put("message", prod);
+                products.add(prodToSend);
+            }
+        }
+        try {
+            switchToAdmin(event);
+        } catch (IOException e) {
+            System.out.println("error switching to admin");
+        }
+    }
+
+    public String getProducts(){
+        String pr1 = p1.getText();
+        String pr2 = p2.getText();
+        String pr3 = p3.getText();
+        String pr4 = p4.getText();
+        String pr5 = p5.getText();
+        String pr6 = p6.getText();
+        String pr7 = p7.getText();
+        String pr8 = p8.getText();
+        String pr9 = p9.getText();
+        String pr10 = p10.getText();
+        String result = "" + pr1 + "/" +  pr2 + "/" +  pr3 + "/" +  pr4 + "/" +  pr5 + "/" +  pr6 + "/" +  pr7 + "/" +  pr8 + "/" +  pr9 + "/" +  pr10;
+        return result;
+    }
+
+    public void startAuction(ActionEvent event){
+        try {
+            userConnection(event, msg, user);
+            client.listenForMessages(chatPane, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
+            for (Object j : products){
+                client.sendMessage(j.toString());
+            }        
+        } catch (IOException e) {
+            System.out.println("error in startAuction method");
+        }
     }
 }
