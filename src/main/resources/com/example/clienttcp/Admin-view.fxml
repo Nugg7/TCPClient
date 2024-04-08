@@ -95,7 +95,7 @@
                <AnchorPane prefHeight="200.0" prefWidth="200.0">
                   <children>
                               <Button fx:id="sendMessageButton" mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="34.0" prefWidth="173.5" text="Send" />
-                     <Button fx:id="sendMessageButton1" layoutX="174.0" mnemonicParsing="false" onAction="#startAuction" prefHeight="34.0" prefWidth="173.5" text="StartAuction" />
+                     <Button fx:id="startAuctionButton" layoutX="174.0" mnemonicParsing="false" onAction="#startAuction" prefHeight="34.0" prefWidth="173.5" text="StartAuction" />
                   </children>
                </AnchorPane>
                 </items>
