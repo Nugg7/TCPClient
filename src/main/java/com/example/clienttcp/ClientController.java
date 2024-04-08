@@ -63,7 +63,7 @@ public class ClientController  {
     @FXML
     private PasswordField passField;
     @FXML
-    private Button setProductsButton;
+    private Text auctionText;
     @FXML
     private TextField p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
     @FXML
@@ -152,7 +152,7 @@ public class ClientController  {
         try {
             if (isConnected == false) {
                 userConnection(event, msg, user);
-                client.listenForMessages(chatPane, highestBidText, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
+                client.listenForMessages(chatPane, highestBidText, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane, auctionText);
                 bidTextField.setTextFormatter(new DecimalTextFormatter(0, 2)); // had to put these here because in any other place the TextField is not initialized yet
                 conDisButton.setText("Quit");
                 isConnected = true;
@@ -386,7 +386,7 @@ public class ClientController  {
         if (startedAuction == false) {
             try {
                 userConnection(event, msg, user);
-                client.listenForMessages(chatPane, highestBidText, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
+                client.listenForMessages(chatPane, highestBidText, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane, auctionText);
                 for (Object j : products){
                     client.sendMessage(j.toString());
                 }
@@ -402,13 +402,29 @@ public class ClientController  {
             startProduct();
         }
         else {
+            nextProduct();
         }
+    }
+
+    public static void setProduct(Text auctiontext, String product){
+        auctiontext.setText("Auction: " + product);
     }
 
     public void startProduct(){
         JSONObject start = new JSONObject();
         start.put("username", "AUCTION");
         start.put("message", "/FIRST PRODUCT");
+        try {
+            client.sendMessage(start.toString());
+        } catch (IOException e) {
+            System.out.println("error in sending first product message");
+        }
+    }
+
+    public void nextProduct(){
+        JSONObject start = new JSONObject();
+        start.put("username", "AUCTION");
+        start.put("message", "/NEXT PRODUCT");
         try {
             client.sendMessage(start.toString());
         } catch (IOException e) {
