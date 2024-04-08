@@ -53,7 +53,7 @@ public class Client {
         }
     }
 
-    public void listenForMessages(VBox chatPane, VBox bidPane, Text text, Text error, AnchorPane chatAnc, AnchorPane bidAnc, ScrollPane chatSP, ScrollPane bidSP) {
+    public void listenForMessages(VBox chatPane, Text highestBid, VBox bidPane, Text text, Text error, AnchorPane chatAnc, AnchorPane bidAnc, ScrollPane chatSP, ScrollPane bidSP) {
         try{
             new Thread(new Runnable() {
                 @Override
@@ -86,9 +86,14 @@ public class Client {
                                     anchor = bidAnc;
                                     sp = bidSP;
                                     break;
+                                case 4:
+                                    ClientController.setHighestBidText(highestBid, (double) JSONMessage.get("MESSAGE"));
+                                    break;
                             }
-                            String parsedMessage = (String) JSONMessage.get("MESSAGE");
-                            ClientController.showMessage(parsedMessage, panel, anchor, sp);
+                            if (messageCode == 1 || messageCode == 3) {
+                                String parsedMessage = (String) JSONMessage.get("MESSAGE");
+                                ClientController.showMessage(parsedMessage, panel, anchor, sp);
+                            }
                         } catch (Exception e) {
                             System.out.println("Error reading a message at Client class Listen for message method");
                             closeEverything(socket, reader, writer);
@@ -123,7 +128,7 @@ public class Client {
     }
 
     public int codeReader(JSONObject jobj){
-        int code;
+        int code = 0;
         String message = (String)jobj.get("CODE");
         switch(message){
             case "MESSAGE":
@@ -135,8 +140,8 @@ public class Client {
             case "BID":
                 code = 3;
             break;
-            default:
-                code = 1;
+            case "PRODUCT":
+                code = 4;
             break;
         }
         return code;

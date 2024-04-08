@@ -68,6 +68,8 @@ public class ClientController  {
     private TextField p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
     @FXML
     private Button startAuctionButton;
+    @FXML
+    private Text highestBidText;
 
     static private Client client;
     public static boolean isConnected = false;
@@ -149,7 +151,7 @@ public class ClientController  {
         try {
             if (isConnected == false) {
                 userConnection(event, msg, user);
-                client.listenForMessages(chatPane, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
+                client.listenForMessages(chatPane, highestBidText, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
                 bidTextField.setTextFormatter(new DecimalTextFormatter(0, 2)); // had to put these here because in any other place the TextField is not initialized yet
                 conDisButton.setText("Quit");
                 isConnected = true;
@@ -380,18 +382,35 @@ public class ClientController  {
     }
 
     public void startAuction(ActionEvent event){
-        try {
-            userConnection(event, msg, user);
-            client.listenForMessages(chatPane, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
-            for (Object j : products){
-                client.sendMessage(j.toString());
+        boolean startedAuction = false;
+        if (startedAuction == false) {
+            try {
+                userConnection(event, msg, user);
+                client.listenForMessages(chatPane, highestBidText, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane);
+                for (Object j : products){
+                    client.sendMessage(j.toString());
+                }
+                String message = "/START";
+                msg.setMessage(message);
+                client.sendMessage(msg.getProfile().toString());
+                msg.resetMessage();
+            } catch (IOException e) {
+                System.out.println("error in startAuction method");
             }
-            String message = "/START";
-            msg.setMessage(message);
-            client.sendMessage(msg.getProfile().toString());
-            msg.resetMessage();
-        } catch (IOException e) {
-            System.out.println("error in startAuction method");
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    startAuctionButton.setText("Next Product");
+                }
+            });
+            startedAuction = true;
         }
+        else {
+            startAuctionButton.setText("Start Auction");
+        }
+    }
+
+    public static void setHighestBidText(Text highestBidText, double bid){
+        highestBidText.setText("Highest bid: " + bid + "$");
     }
 }
