@@ -74,6 +74,9 @@ public class ClientController  {
     static private Client client;
     public static boolean isConnected = false;
     static boolean startedAuction = false;
+    static boolean AuctionEnded = false;
+    static int numberOfProducts = 0;
+    static int prodIdx = 0;
 
     private Timer timer;
     private TimerTask task;
@@ -389,6 +392,7 @@ public class ClientController  {
                 client.listenForMessages(chatPane, highestBidText, bidPane, statusText, errorText, chatAnchor, bidAnchor, chatScrollPane, bidScrollPane, auctionText);
                 for (Object j : products){
                     client.sendMessage(j.toString());
+                    numberOfProducts++;
                 }
                 String message = "/START";
                 msg.setMessage(message);
@@ -401,8 +405,16 @@ public class ClientController  {
             startedAuction = true;
             startProduct();
         }
-        else {
+        else if (startedAuction == true && AuctionEnded == false){
+            prodIdx++;
+            if (prodIdx >= numberOfProducts-1){
+                AuctionEnded = true;
+                startAuctionButton.setText("End Auction");
+            }
             nextProduct();
+        }
+        else if (startedAuction == true && AuctionEnded == true){
+            endAuction();
         }
     }
 
@@ -422,13 +434,24 @@ public class ClientController  {
     }
 
     public void nextProduct(){
-        JSONObject start = new JSONObject();
-        start.put("username", "AUCTION");
-        start.put("message", "/NEXT PRODUCT");
+        JSONObject next = new JSONObject();
+        next.put("username", "AUCTION");
+        next.put("message", "/NEXT PRODUCT");
         try {
-            client.sendMessage(start.toString());
+            client.sendMessage(next.toString());
         } catch (IOException e) {
-            System.out.println("error in sending first product message");
+            System.out.println("error in sending next product");
+        }
+    }
+
+    public void endAuction(){
+        JSONObject end = new JSONObject();
+        end.put("username", "AUCTION");
+        end.put("message", "/END");
+        try {
+            client.sendMessage(end.toString());
+        } catch (IOException e) {
+            System.out.println("error in sending end Auction");
         }
     }
 
