@@ -73,6 +73,7 @@ public class ClientController  {
 
     static private Client client;
     public static boolean isConnected = false;
+    static boolean startedAuction = false;
 
     private Timer timer;
     private TimerTask task;
@@ -382,7 +383,6 @@ public class ClientController  {
     }
 
     public void startAuction(ActionEvent event){
-        boolean startedAuction = false;
         if (startedAuction == false) {
             try {
                 userConnection(event, msg, user);
@@ -397,16 +397,22 @@ public class ClientController  {
             } catch (IOException e) {
                 System.out.println("error in startAuction method");
             }
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    startAuctionButton.setText("Next Product");
-                }
-            });
+            startAuctionButton.setText("Next Product");
             startedAuction = true;
+            startProduct();
         }
         else {
-            startAuctionButton.setText("Start Auction");
+        }
+    }
+
+    public void startProduct(){
+        JSONObject start = new JSONObject();
+        start.put("username", "AUCTION");
+        start.put("message", "/FIRST PRODUCT");
+        try {
+            client.sendMessage(start.toString());
+        } catch (IOException e) {
+            System.out.println("error in sending first product message");
         }
     }
 
