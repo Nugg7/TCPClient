@@ -53,7 +53,7 @@ public class Client {
         }
     }
 
-    public void listenForMessages(VBox chatPane, Text highestBid, VBox bidPane, Text text, Text error, AnchorPane chatAnc, AnchorPane bidAnc, ScrollPane chatSP, ScrollPane bidSP) {
+    public void listenForMessages(VBox chatPane, Text highestBid, VBox bidPane, Text text, Text error, AnchorPane chatAnc, AnchorPane bidAnc, ScrollPane chatSP, ScrollPane bidSP, Text auctionProduct) {
         try{
             new Thread(new Runnable() {
                 @Override
@@ -81,6 +81,11 @@ public class Client {
                                     anchor = chatAnc;
                                     sp = chatSP;
                                     break;
+                                case 2:
+                                    ClientController.setProduct(auctionProduct, JSONMessage.get("MESSAGE").toString());
+                                    if (JSONMessage.get("MESSAGE").toString().equals("Ended"));
+                                        ClientController.setHighestBidText(highestBid, 0);
+                                    break;
                                 case 3:
                                     panel = bidPane;
                                     anchor = bidAnc;
@@ -88,6 +93,9 @@ public class Client {
                                     break;
                                 case 4:
                                     ClientController.setHighestBidText(highestBid, (double) JSONMessage.get("MESSAGE"));
+                                    break;
+                                case 5:
+                                    ClientController.setHighestBidText(highestBid, 0);
                                     break;
                             }
                             if (messageCode == 1 || messageCode == 3) {
@@ -142,6 +150,9 @@ public class Client {
             break;
             case "PRODUCT":
                 code = 4;
+            break;
+            case "RESET":
+                code = 5;
             break;
         }
         return code;
