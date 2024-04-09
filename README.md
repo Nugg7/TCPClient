@@ -1,8 +1,8 @@
 # Auction
 This program is only part of the Auction project and it consists of the client side which contains a graphical interface to be able to connect and operate on the auction.
 *[SERVER](https://github.com/Nugg7/TCPServer.git) - to get server side.*
-# Dependencies
-- JSON-simple ver. 1.1.1
+# Dependencies (from maven)
+- JSON-simple ver. 1.1.1 (`com.googlecode.json-simple:json-simple:1.1.1`)
 - formsfx-core
 
 > [!important]
