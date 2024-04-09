@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ClientTCP:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="126cac1f-8ed4-480e-a118-f7b240e0995e" name="Changes" comment="fixed panel (kinda)">
+      <change beforePath="$PROJECT_DIR$/Message.json" beforeDir="false" afterPath="$PROJECT_DIR$/Message.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2eZ1Vz593DO8nE4UOLqF6dSwuir" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/RobStevenGerardGueva/OneDrive - ITS Angelo Rizzoli/Desktop/TCPServer-master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\RobStevenGerardGueva\Documents\VScodes\RetiJava\TCPClient\.idea\libraries" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false">
+      <option name="MAIN_CLASS_NAME" value="com.example.clienttcp.ClientMain" />
+      <module name="ClientTCP" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="126cac1f-8ed4-480e-a118-f7b240e0995e" name="Changes" comment="" />
+      <created>1712097313472</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712097313472</updated>
+      <workItem from="1712097314739" duration="42180000" />
+      <workItem from="1712523417075" duration="437000" />
+      <workItem from="1712558477527" duration="1655000" />
+      <workItem from="1712560155799" duration="596000" />
+      <workItem from="1712611501157" duration="2830000" />
+      <workItem from="1712644834158" duration="6412000" />
+    </task>
+    <task id="LOCAL-00001" summary="added showing message mechanism but needs fix since chatPane is null at most of the program but not at send message.">
+      <option name="closed" value="true" />
+      <created>1712144861148</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712144861148</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fixed showMessage (only for message code not for auction), modified the message received from server to json">
+      <option name="closed" value="true" />
+      <created>1712223936120</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712223936120</updated>
+    </task>
+    <task id="LOCAL-00003" summary=" changed Auction-view.fxml to have status bar on top and modified the quit button to connect, and become quit after connected">
+      <option name="closed" value="true" />
+      <created>1712223964985</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712223964985</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added parser method for parsing messages from server">
+      <option name="closed" value="true" />
+      <created>1712224017718</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712224017718</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added bid events and option in listenForMessages from server">
+      <option name="closed" value="true" />
+      <created>1712226179618</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712226179618</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added support for &quot;,&quot; with &quot;.&quot; in the DecimalFormatter for the bidTextField">
+      <option name="closed" value="true" />
+      <created>1712302148598</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712302148598</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added try catch for whenever server crashes or is closed when clients are still connected (listenForMessages method)">
+      <option name="closed" value="true" />
+      <created>1712303342640</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712303342640</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added handling of errors for sending messages, bids and whenever trying to connect to turned off server (Connect button)">
+      <option name="closed" value="true" />
+      <created>1712305592608</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712305592608</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added error texts and functions">
+      <option name="closed" value="true" />
+      <created>1712313774797</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712313774797</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added error text and scene">
+      <option name="closed" value="true" />
+      <created>1712313834171</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712313834171</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed error in the code">
+      <option name="closed" value="true" />
+      <created>1712313853930</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1712313853930</updated>
+    </task>
+    <task id="LOCAL-00012" summary="created error scene">
+      <option name="closed" value="true" />
+      <created>1712314036579</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1712314036579</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixed some errors">
+      <option name="closed" value="true" />
+      <created>1712314047473</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1712314047473</updated>
+    </task>
+    <task id="LOCAL-00014" summary="changed Sign in grammatical error">
+      <option name="closed" value="true" />
+      <created>1712648175798</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1712648175798</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added localhost as static string and static int  port">
+      <option name="closed" value="true" />
+      <created>1712655833854</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1712655833854</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed panel (kinda)">
+      <option name="closed" value="true" />
+      <created>1712658496200</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1712658496200</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added showing message mechanism but needs fix since chatPane is null at most of the program but not at send message." />
+    <MESSAGE value="fixed showMessage (only for message code not for auction), modified the message received from server to json" />
+    <MESSAGE value=" changed Auction-view.fxml to have status bar on top and modified the quit button to connect, and become quit after connected" />
+    <MESSAGE value="added parser method for parsing messages from server" />
+    <MESSAGE value="added bid events and option in listenForMessages from server" />
+    <MESSAGE value="added support for &quot;,&quot; with &quot;.&quot; in the DecimalFormatter for the bidTextField" />
+    <MESSAGE value="Added try catch for whenever server crashes or is closed when clients are still connected (listenForMessages method)" />
+    <MESSAGE value="added handling of errors for sending messages, bids and whenever trying to connect to turned off server (Connect button)" />
+    <MESSAGE value="added error texts and functions" />
+    <MESSAGE value="added error text and scene" />
+    <MESSAGE value="fixed error in the code" />
+    <MESSAGE value="created error scene" />
+    <MESSAGE value="fixed some errors" />
+    <MESSAGE value="changed Sign in grammatical error" />
+    <MESSAGE value="added localhost as static string and static int  port" />
+    <MESSAGE value="fixed panel (kinda)" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed panel (kinda)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/clienttcp/Client.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
