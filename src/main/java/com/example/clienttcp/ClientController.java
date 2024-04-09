@@ -72,6 +72,8 @@ public class ClientController  {
     private Text highestBidText;
 
     static private Client client;
+    static String IP = "localhost";
+    static int port = 1234;
     public static boolean isConnected = false;
     static boolean startedAuction = false;
     static boolean AuctionEnded = false;
@@ -234,7 +236,7 @@ public class ClientController  {
     public void userConnection(ActionEvent event, JSON4msg msg, String user) throws IOException {
         try {
             try {
-                Socket socket = new Socket("localhost", 1234); //generates socket (ip address, port)
+                Socket socket = new Socket(IP, port); //generates socket (ip address, port)
                 client = new Client(socket, user); //connects to the server through the socket
             } catch (Exception e) {
                 throw new IOException();
