@@ -3,7 +3,7 @@ This program is only part of the Auction project and it consists of the client s
 *[SERVER](https://github.com/Nugg7/TCPServer.git) - to get server side.*
 # Dependencies (from maven)
 - JSON-simple ver. 1.1.1 (`com.googlecode.json-simple:json-simple:1.1.1`)
-- formsfx-core
+- formsfx-core (`com.dlsc.formsfx:formsfx-core:11.6.0`)
 
 > [!important]
 > These libraries might not be imported automatically when opening the IDE, if so import them manually by going on the File>Project Structure>Libraries and click the '+' button to either import them from maven or from the "libraries to import" folder provided by the project.
