@@ -31,7 +31,7 @@ Open the IDE and open the project downloaded/cloned, change the IP address and t
 - Quit from the Auction
 
 > [!Tip]
-> Connecti to the server before the Admin starts the auction or you won't be able to connect
+> Connect to the server before the Admin starts the auction or you won't be able to connect
 ## Admin:
 - Connection to the server through TCP with a socket chosen
 - Set the products put up for auction
@@ -50,4 +50,4 @@ Open the IDE and open the project downloaded/cloned, change the IP address and t
 > To change password go into `ClientController.java` and change the password in String variable `pass="admin1234"`
 
 > [!warning]
-> the current project works fine with Linux based operative systems but on windows operative systems has quite some bugs
+> the current project works fine with Linux based operating systems but on windows operating systems has quite some bugs
