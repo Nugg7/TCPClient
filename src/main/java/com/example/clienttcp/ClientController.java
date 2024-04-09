@@ -322,7 +322,7 @@ public class ClientController  {
                 vbox.getChildren().add(hbox);
                 if (vbox.getHeight() > 290) {
                     anchor.setMinHeight(vbox.getHeight() + 74);
-                    sp.setVvalue(vbox.getHeight());
+                    sp.setVvalue(anchor.getHeight());
                 }
             }
         });
