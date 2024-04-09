@@ -29,6 +29,9 @@ Open the IDE and open the project downloaded/cloned, change the IP address and t
 - Visualize the products currently on auction
 - Visualize how the current auction is going with the highest bid
 - Quit from the Auction
+
+> [!Tip]
+> Connecti to the server before the Admin starts the auction or you won't be able to connect
 ## Admin:
 - Connection to the server through TCP with a socket chosen
 - Set the products put up for auction
@@ -41,6 +44,10 @@ Open the IDE and open the project downloaded/cloned, change the IP address and t
 - Visualize how the current auction is going with the highest bid
 - End the Auction
 - Quit from the Auction
+
+> [!Tip]
+> Credentials of Admin - Username: `ADMIN`, Password: `admin1234`
+> To change password go into `ClientController.java` and change the password in String variable `pass="admin1234"`
 
 > [!warning]
 > the current project works fine with Linux based operative systems but on windows operative systems has quite some bugs
