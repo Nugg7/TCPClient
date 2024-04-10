@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="126cac1f-8ed4-480e-a118-f7b240e0995e" name="Changes" comment="added jar executable" />
+    <list default="true" id="126cac1f-8ed4-480e-a118-f7b240e0995e" name="Changes" comment="fixed panel (kinda)">
+      <change beforePath="$PROJECT_DIR$/Message.json" beforeDir="false" afterPath="$PROJECT_DIR$/Message.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +21,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,21 +46,19 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/RobStevenGerardGueva/Documents/VScodes/RetiJava/TCPClient/lib",
+    "last_opened_file_path": "C:/Users/RobStevenGerardGueva/OneDrive - ITS Angelo Rizzoli/Desktop/TCPServer-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.5045977",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\RobStevenGerardGueva\Documents\VScodes\RetiJava\TCPClient" />
-      <recent name="C:\Users\RobStevenGerardGueva\Documents\VScodes\RetiJava\TCPClient\src" />
       <recent name="C:\Users\RobStevenGerardGueva\Documents\VScodes\RetiJava\TCPClient\.idea\libraries" />
     </key>
   </component>
@@ -85,8 +84,7 @@
       <workItem from="1712558477527" duration="1655000" />
       <workItem from="1712560155799" duration="596000" />
       <workItem from="1712611501157" duration="2830000" />
-      <workItem from="1712644834158" duration="6627000" />
-      <workItem from="1712780982340" duration="632000" />
+      <workItem from="1712644834158" duration="6412000" />
     </task>
     <task id="LOCAL-00001" summary="added showing message mechanism but needs fix since chatPane is null at most of the program but not at send message.">
       <option name="closed" value="true" />
@@ -216,31 +214,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712658496200</updated>
     </task>
-    <task id="LOCAL-00017" summary="added libraries and missing files that wouldn't add to repo">
-      <option name="closed" value="true" />
-      <created>1712658860867</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1712658860867</updated>
-    </task>
-    <task id="LOCAL-00018" summary="added jar libraries, and jar executable">
-      <option name="closed" value="true" />
-      <created>1712781433941</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1712781433941</updated>
-    </task>
-    <task id="LOCAL-00019" summary="added jar executable">
-      <option name="closed" value="true" />
-      <created>1712781562781</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1712781562782</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,10 +248,7 @@
     <MESSAGE value="changed Sign in grammatical error" />
     <MESSAGE value="added localhost as static string and static int  port" />
     <MESSAGE value="fixed panel (kinda)" />
-    <MESSAGE value="added libraries and missing files that wouldn't add to repo" />
-    <MESSAGE value="added jar libraries, and jar executable" />
-    <MESSAGE value="added jar executable" />
-    <option name="LAST_COMMIT_MESSAGE" value="added jar executable" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed panel (kinda)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
