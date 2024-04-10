@@ -5,11 +5,8 @@ This program is only part of the Auction project and it consists of the client s
 - JSON-simple ver. 1.1.1 (`com.googlecode.json-simple:json-simple:1.1.1`)
 - formsfx-core (`com.dlsc.formsfx:formsfx-core:11.6.0`)
 
-> [!important]
-> These libraries might not be imported automatically when opening the IDE, if so import them manually by going on the File>Project Structure>Libraries and click the '+' button to either import them from maven or from the "libraries to import" folder provided by the project.
 # Requirements
-- JDK 8+
-- IDE to run program (like Intellij)
+- JDK 21+
 # Installation
 ## Linux/Mac/Windows (git bash)
 ```java
@@ -19,7 +16,11 @@ git clone https://github.com/Nugg7/TCPClient.git
 - Download the zip
 - extract
 # Usage
-Open the IDE and open the project downloaded/cloned, change the IP address and the port in the `ClientController.java` class `src/main/java/com/example/clienttcp` (if needed - default is : localhost:1234), then run the `ClientMain.java` file. Once ran the project, make sure the server is running too, insert a username, sign in, and when on the main GUI, click on the connect button on the lower right of the window.
+After cloning the repo, just double click on the jar file
+or if that doesn't work open terminal or cmd in folder and use:
+```java
+java -jar ClientTCP.jar
+```
 # Functionalities
 ## User:
 - Connection to the server through TCP with a socket chosen
@@ -50,4 +51,4 @@ Open the IDE and open the project downloaded/cloned, change the IP address and t
 > To change password go into `ClientController.java` and change the password in String variable `pass="admin1234"`
 
 > [!warning]
-> the current project works fine with Linux based operating systems but on windows operating systems has quite some bugs
+> the current project executable (JAR) works fine with windows but breaks on Linux and Mac based OS
