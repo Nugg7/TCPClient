@@ -9,7 +9,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="126cac1f-8ed4-480e-a118-f7b240e0995e" name="Changes" comment="fixed panel (kinda)">
+    <list default="true" id="126cac1f-8ed4-480e-a118-f7b240e0995e" name="Changes" comment="added libraries and missing files that wouldn't add to repo">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/formsfx-core-11.6.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/hamcrest-core-1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-base-22-ea+16-win.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-base-22-ea+16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-controls-22-ea+16-win.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-controls-22-ea+16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-fxml-22-ea+16-win.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-fxml-22-ea+16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-graphics-22-ea+16-win.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javafx-graphics-22-ea+16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/json-simple-1.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-4.10.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/clienttcp/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/dlsc_formsfx_core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/googlecode_json_simple.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Message.json" beforeDir="false" afterPath="$PROJECT_DIR$/Message.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +38,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -46,14 +64,14 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/RobStevenGerardGueva/OneDrive - ITS Angelo Rizzoli/Desktop/TCPServer-master",
+    "last_opened_file_path": "C:/Users/RobStevenGerardGueva/Documents/VScodes/RetiJava/TCPClient/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.side.proportion": "0.5045977",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -84,7 +102,8 @@
       <workItem from="1712558477527" duration="1655000" />
       <workItem from="1712560155799" duration="596000" />
       <workItem from="1712611501157" duration="2830000" />
-      <workItem from="1712644834158" duration="6412000" />
+      <workItem from="1712644834158" duration="6627000" />
+      <workItem from="1712780982340" duration="315000" />
     </task>
     <task id="LOCAL-00001" summary="added showing message mechanism but needs fix since chatPane is null at most of the program but not at send message.">
       <option name="closed" value="true" />
@@ -214,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712658496200</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added libraries and missing files that wouldn't add to repo">
+      <option name="closed" value="true" />
+      <created>1712658860867</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1712658860867</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +275,8 @@
     <MESSAGE value="changed Sign in grammatical error" />
     <MESSAGE value="added localhost as static string and static int  port" />
     <MESSAGE value="fixed panel (kinda)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed panel (kinda)" />
+    <MESSAGE value="added libraries and missing files that wouldn't add to repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="added libraries and missing files that wouldn't add to repo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
