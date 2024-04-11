@@ -6,7 +6,7 @@ This program is only part of the Auction project and it consists of the client s
 - formsfx-core (`com.dlsc.formsfx:formsfx-core:11.6.0`)
 
 # Requirements
-- JDK 21+
+- JDK 22
 # Installation
 ## Linux/Mac/Windows (git bash)
 ```java
