@@ -1,7 +1,3 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Main-Class: com.example.clienttcp.Launcher
-=======
-Main-Class: com.example.clienttcp.ClientMain
->>>>>>> origin/master
 

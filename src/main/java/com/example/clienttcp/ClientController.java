@@ -72,7 +72,7 @@ public class ClientController  {
     private Text highestBidText;
 
     static private Client client;
-    static String IP = "localhost";
+    static String IP = "172.16.49.191";
     static int port = 1234;
     public static boolean isConnected = false;
     static boolean startedAuction = false;
