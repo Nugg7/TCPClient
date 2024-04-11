@@ -14,7 +14,7 @@ install the release or
 git clone https://github.com/Nugg7/TCPClient.git
 ```
 # Usage
-After cloning the repo, just double click on the jar file
+just double click on the jar file
 or if that doesn't work open terminal or cmd in folder and use:
 ```java
 java -jar ClientTCP.jar
