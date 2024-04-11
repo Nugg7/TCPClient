@@ -218,7 +218,7 @@ public class ClientController  {
     }
 
     public void setIp() {
-        if (ipTextField.getText() == null){
+        if (ipTextField.getText() == null || ipTextField.getText().equals("")){
             IP = ipTextField.getText();
         }
     }

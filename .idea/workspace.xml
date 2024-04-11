@@ -10,20 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="126cac1f-8ed4-480e-a118-f7b240e0995e" name="Changes" comment="updated ip address">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Message.json" beforeDir="false" afterPath="$PROJECT_DIR$/Message.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ClientTCP_jar/ClientTCP.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ClientTCP_jar/ClientTCP.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/clienttcp/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/clienttcp/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/clienttcp/Client-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/clienttcp/Client-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/Client-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/Client-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$6$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$6$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/clienttcp/ClientController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712820020295</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="updated ip address">
+      <option name="closed" value="true" />
+      <created>1712821416463</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1712821416463</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
