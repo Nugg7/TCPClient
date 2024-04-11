@@ -70,9 +70,11 @@ public class ClientController  {
     private Button startAuctionButton;
     @FXML
     private Text highestBidText;
+    @FXML
+    private TextField ipTextField;
 
     static private Client client;
-    static String IP = "172.16.49.191";
+    static String IP = "localhost";
     static int port = 1234;
     public static boolean isConnected = false;
     static boolean startedAuction = false;
@@ -92,6 +94,7 @@ public class ClientController  {
     public void submit(ActionEvent event) {
         user = UserName.getText(); //gets the username from the text field in the scene
         user = user.trim();
+        setIp();
         if (user != null && !(user.equals("ADMIN")) && !(user.equals(""))) {
             try {
                 timer = new Timer();
@@ -212,6 +215,12 @@ public class ClientController  {
                 }
             }
         });
+    }
+
+    public void setIp() {
+        if (ipTextField.getText() == null){
+            IP = ipTextField.getText();
+        }
     }
 
     public void switchToAdmin(ActionEvent event) throws IOException {

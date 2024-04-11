@@ -8,16 +8,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="486.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
+<VBox alignment="CENTER" prefHeight="661.0" prefWidth="741.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.clienttcp.ClientController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+   <Text fx:id="SignInLabel1" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter IP address">
+      <font>
+         <Font size="17.0" />
+      </font>
+   </Text>
+    <TextField fx:id="ipTextField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
     <Text fx:id="SignInLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter username to join the auction!">
         <font>
             <Font size="17.0" />
         </font>
     </Text>
-    <TextField fx:id="UserName" maxWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
+   <TextField fx:id="UserName" maxWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
    <PasswordField fx:id="passField" maxWidth="200.0" minWidth="200.0" prefHeight="26.0" prefWidth="200.0" visible="false" />
     <Button fx:id="SignInButton" onAction="#submit" text="Sign-in" />
 </VBox>
